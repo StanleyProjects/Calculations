@@ -8,6 +8,16 @@ interface Size {
     val height: Double
 }
 
+fun Size.copy(
+    width: Double = this.width,
+    height: Double = this.height,
+): Size {
+    return MutableSize(
+        width = width,
+        height = height,
+    )
+}
+
 fun Size.toOffset(dZ: Double, scale: Double): Offset {
     return MutableOffset(
         dX = width * scale,

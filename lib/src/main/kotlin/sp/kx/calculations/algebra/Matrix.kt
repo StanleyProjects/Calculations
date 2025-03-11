@@ -7,3 +7,17 @@ interface Matrix {
     val m20: Double; val m21: Double; val m22: Double; val m23: Double
     val m30: Double; val m31: Double; val m32: Double; val m33: Double
 }
+
+fun Matrix.copy(
+    m00: Double = this.m00, m01: Double = this.m01, m02: Double = this.m02, m03: Double = this.m03,
+    m10: Double = this.m10, m11: Double = this.m11, m12: Double = this.m12, m13: Double = this.m13,
+    m20: Double = this.m20, m21: Double = this.m21, m22: Double = this.m22, m23: Double = this.m23,
+    m30: Double = this.m30, m31: Double = this.m31, m32: Double = this.m32, m33: Double = this.m33,
+): Matrix {
+    return MutableMatrix(
+        m00 = m00, m01 = m01, m02 = m02, m03 = m03,
+        m10 = m10, m11 = m11, m12 = m12, m13 = m13,
+        m20 = m20, m21 = m21, m22 = m22, m23 = m23,
+        m30 = m30, m31 = m31, m32 = m32, m33 = m33,
+    )
+}
