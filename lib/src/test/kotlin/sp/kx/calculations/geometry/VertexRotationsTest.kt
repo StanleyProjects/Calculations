@@ -51,6 +51,19 @@ internal class VertexRotationsTest {
                     MutableRotation(0.0, 0.0, 0.0),
                     MutableVertex(0.0, 1.0, 0.0),
                 ),
+                //
+                Pair(
+                    MutableRotation(pi12, 0.0, 0.0),
+                    MutableVertex(0.0, 0.0, 1.0),
+                ),
+                Pair(
+                    MutableRotation(pi22, 0.0, 0.0),
+                    MutableVertex(0.0, -1.0, 0.0),
+                ),
+                Pair(
+                    MutableRotation(pi32, 0.0, 0.0),
+                    MutableVertex(0.0, 0.0, -1.0),
+                ),
             ),
         ).forEachIndexed { i, (vertex, issues) ->
             issues.forEachIndexed { j, issue ->

@@ -11,15 +11,17 @@ fun rotate(
 ): Vertex {
     var c = kotlin.math.cos(aZ)
     var s = kotlin.math.sin(aZ)
-    var _y = x * s + y * c
+    val _y = x * s + y * c
     var _x = x * c - y * s
     c = kotlin.math.cos(aY)
     s = kotlin.math.sin(aY)
-    var _z = _x * s + z * c
+    val _z = _x * s + z * c
     _x = _x * c - z * s
+    c = kotlin.math.cos(aX)
+    s = kotlin.math.sin(aX)
     return MutableVertex(
         x = _x,
-        y = _y,
-        z = _z,
+        y = _y * c - _z * s,
+        z = _y * s + _z * c,
     )
 }
