@@ -2,6 +2,7 @@ package sp.kx.calculations.algebra
 
 import java.util.Objects
 
+@Suppress("ktlint:standard:parameter-list-wrapping")
 class MutableMatrix(
     override var m00: Double, override var m10: Double, override var m20: Double, override var m30: Double,
     override var m01: Double, override var m11: Double, override var m21: Double, override var m31: Double,
@@ -20,9 +21,9 @@ class MutableMatrix(
         return when (other) {
             is Matrix -> {
                 m00 == other.m00 && m10 == other.m10 && m20 == other.m20 && m30 == other.m30 &&
-                        m01 == other.m01 && m11 == other.m11 && m21 == other.m21 && m31 == other.m31 &&
-                        m02 == other.m02 && m12 == other.m12 && m22 == other.m22 && m32 == other.m32 &&
-                        m03 == other.m03 && m13 == other.m13 && m23 == other.m23 && m33 == other.m33
+                m01 == other.m01 && m11 == other.m11 && m21 == other.m21 && m31 == other.m31 &&
+                m02 == other.m02 && m12 == other.m12 && m22 == other.m22 && m32 == other.m32 &&
+                m03 == other.m03 && m13 == other.m13 && m23 == other.m23 && m33 == other.m33
             }
             else -> false
         }
@@ -37,6 +38,7 @@ class MutableMatrix(
         )
     }
 
+    @Suppress("ktlint:standard:wrapping")
     operator fun timesAssign(other: Matrix) {
         val m00 = this.m00 * other.m00 + this.m01 * other.m10 + this.m02 * other.m20 + this.m03 * other.m30
         val m01 = this.m00 * other.m01 + this.m01 * other.m11 + this.m02 * other.m21 + this.m03 * other.m31
