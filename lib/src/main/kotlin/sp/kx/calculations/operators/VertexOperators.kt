@@ -2,7 +2,32 @@ package sp.kx.calculations.operators
 
 import sp.kx.calculations.algebra.Matrix
 import sp.kx.calculations.geometry.MutableVertex
+import sp.kx.calculations.geometry.Offset
 import sp.kx.calculations.geometry.Vertex
+
+operator fun Vertex.times(scale: Double): Vertex {
+    return MutableVertex(
+        x = x * scale,
+        y = y * scale,
+        z = z * scale,
+    )
+}
+
+operator fun Vertex.div(scale: Double): Vertex {
+    return MutableVertex(
+        x = x / scale,
+        y = y / scale,
+        z = z / scale,
+    )
+}
+
+operator fun Vertex.plus(offset: Offset): Vertex {
+    return MutableVertex(
+        x = x + offset.dX,
+        y = y + offset.dY,
+        z = z + offset.dZ,
+    )
+}
 
 operator fun Vertex.times(matrix: Matrix): Vertex {
     return MutableVertex(
