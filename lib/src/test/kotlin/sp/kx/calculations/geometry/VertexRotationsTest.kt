@@ -16,6 +16,11 @@ internal class VertexRotationsTest {
         listOf(
             MutableVertex(1.0, 0.0, 0.0) to listOf(
                 Pair(
+                    MutableRotation(0.0, 0.0, 0.0),
+                    MutableVertex(1.0, 0.0, 0.0),
+                ),
+                //
+                Pair(
                     MutableRotation(0.0, 0.0, pi12),
                     MutableVertex(0.0, 1.0, 0.0),
                 ),
@@ -27,9 +32,28 @@ internal class VertexRotationsTest {
                     MutableRotation(0.0, 0.0, pi32),
                     MutableVertex(0.0, -1.0, 0.0),
                 ),
+                //
+                Pair(
+                    MutableRotation(0.0, aY = pi12, 0.0),
+                    MutableVertex(0.0, 0.0, z = 1.0),
+                ),
+                Pair(
+                    MutableRotation(0.0, aY = pi22, 0.0),
+                    MutableVertex(-1.0, 0.0, 0.0),
+                ),
+                Pair(
+                    MutableRotation(0.0, aY = pi32, 0.0),
+                    MutableVertex(0.0, 0.0, -1.0),
+                ),
             ),
-        ).forEach { (vertex, issues) ->
-            issues.forEach { issue ->
+            MutableVertex(0.0, 1.0, 0.0) to listOf(
+                Pair(
+                    MutableRotation(0.0, 0.0, 0.0),
+                    MutableVertex(0.0, 1.0, 0.0),
+                ),
+            ),
+        ).forEachIndexed { i, (vertex, issues) ->
+            issues.forEachIndexed { j, issue ->
                 val (rotation, expected) = issue
                 val actual = rotate(
                     x = vertex.x,
@@ -39,10 +63,16 @@ internal class VertexRotationsTest {
                     aY = rotation.aY,
                     aZ = rotation.aZ,
                 )
-                assertEquals(expected.x, actual.x, delta)
-                assertEquals(expected.y, actual.y, delta)
-                assertEquals(expected.z, actual.z, delta)
-                assertTrue(actual.eq(expected, exponent))
+                val message = """
+                    $i/$j
+                    e: $expected
+                    a: $actual
+                    r: $rotation
+                """.trimIndent()
+                assertEquals(expected.x, actual.x, delta, message)
+                assertEquals(expected.y, actual.y, delta, message)
+                assertEquals(expected.z, actual.z, delta, message)
+                assertTrue(actual.eq(expected, exponent), message)
             }
         }
     }
