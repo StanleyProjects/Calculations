@@ -1,9 +1,7 @@
 package sp.kx.calculations.geometry
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import sp.kx.calculations.comparisons.eq
+import sp.kx.calculations.Assertions.assertEquals
 
 internal class VertexRotationsTest {
     @Test
@@ -82,10 +80,13 @@ internal class VertexRotationsTest {
                     a: $actual
                     r: $rotation
                 """.trimIndent()
-                assertEquals(expected.x, actual.x, delta, message)
-                assertEquals(expected.y, actual.y, delta, message)
-                assertEquals(expected.z, actual.z, delta, message)
-                assertTrue(actual.eq(expected, exponent), message)
+                assertEquals(
+                    expected = expected,
+                    actual = actual,
+                    delta = delta,
+                    exponent = exponent,
+                    message = message,
+                )
             }
         }
     }
