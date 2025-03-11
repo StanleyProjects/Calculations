@@ -19,8 +19,8 @@ fun MutableMatrix.rx(radians: Double) {
     val s = kotlin.math.sin(radians)
     //
     val n00 = 1.0; val n01 = 0.0; val n02 = 0.0; val n03 = 0.0;
-    val n10 = 0.0; val n11 = c; val n12 = -s; val n13 = 0.0;
-    val n20 = 0.0; val n21 = s; val n22 = c; val n23 = 0.0;
+    val n10 = 0.0; val n11 = c;   val n12 = -s;  val n13 = 0.0;
+    val n20 = 0.0; val n21 = s;   val n22 = c;   val n23 = 0.0;
     val n30 = 0.0; val n31 = 0.0; val n32 = 0.0; val n33 = 1.0;
     //
     val m00 = this.m00 * n00 + this.m01 * n10 + this.m02 * n20 + this.m03 * n30
@@ -53,9 +53,9 @@ fun MutableMatrix.ry(radians: Double) {
     val c = kotlin.math.cos(radians)
     val s = kotlin.math.sin(radians)
     //
-    val n00 = c; val n01 = 0.0; val n02 = -s; val n03 = 0.0;
+    val n00 = c;   val n01 = 0.0; val n02 = -s;  val n03 = 0.0;
     val n10 = 0.0; val n11 = 1.0; val n12 = 0.0; val n13 = 0.0;
-    val n20 = s; val n21 = 0.0; val n22 = c; val n23 = 0.0;
+    val n20 = s;   val n21 = 0.0; val n22 = c;   val n23 = 0.0;
     val n30 = 0.0; val n31 = 0.0; val n32 = 0.0; val n33 = 1.0;
     //
     val m00 = this.m00 * n00 + this.m01 * n10 + this.m02 * n20 + this.m03 * n30
@@ -88,8 +88,8 @@ fun MutableMatrix.rz(radians: Double) {
     val c = kotlin.math.cos(radians)
     val s = kotlin.math.sin(radians)
     //
-    val n00 = c; val n01 = -s; val n02 = 0.0; val n03 = 0.0;
-    val n10 = s; val n11 = c; val n12 = 0.0; val n13 = 0.0;
+    val n00 = c;   val n01 = -s;  val n02 = 0.0; val n03 = 0.0;
+    val n10 = s;   val n11 = c;   val n12 = 0.0; val n13 = 0.0;
     val n20 = 0.0; val n21 = 0.0; val n22 = 1.0; val n23 = 0.0;
     val n30 = 0.0; val n31 = 0.0; val n32 = 0.0; val n33 = 1.0;
     //
@@ -124,8 +124,28 @@ fun MutableMatrix.rotate(aX: Double, aY: Double, aZ: Double) {
     val cY = kotlin.math.cos(aY)
     val cZ = kotlin.math.cos(aZ)
     val sX = kotlin.math.sin(aX)
-    val sY = kotlin.math.sin(aY)
+    val sY = -kotlin.math.sin(aY)
     val sZ = kotlin.math.sin(aZ)
+    //
+//    val x00 = 1.0; val x01 = 0.0; val x02 = 0.0; val x03 = 0.0;
+//    val x10 = 0.0; val x11 = cX;  val x12 = -sX; val x13 = 0.0;
+//    val x20 = 0.0; val x21 = sX;  val x22 = cX;  val x23 = 0.0;
+//    val x30 = 0.0; val x31 = 0.0; val x32 = 0.0; val x33 = 1.0;
+//    //
+    val y00 = cY;  val y01 = 0.0; val y02 = -sY; val y03 = 0.0;
+    val y10 = 0.0; val y11 = 1.0; val y12 = 0.0; val y13 = 0.0;
+    val y20 = sY;  val y21 = 0.0; val y22 = cY;  val y23 = 0.0;
+    val y30 = 0.0; val y31 = 0.0; val y32 = 0.0; val y33 = 1.0;
+//    //
+    val z00 = cZ;  val z01 = -sZ; val z02 = 0.0; val z03 = 0.0;
+    val z10 = sZ;  val z11 = cZ;  val z12 = 0.0; val z13 = 0.0;
+    val z20 = 0.0; val z21 = 0.0; val z22 = 1.0; val z23 = 0.0;
+    val z30 = 0.0; val z31 = 0.0; val z32 = 0.0; val z33 = 1.0;
+    //
+//    val n00 = cZ * cY; val n01 = cZ * sY * sX - sZ * cX; val n02 = cZ * sY * cX + sZ * sX; val n03 = 0.0;
+//    val n10 = sZ * cY; val n11 = sZ * sY * sX + cZ * cX; val n12 = sZ * sY * cX - cZ * sX; val n13 = 0.0;
+//    val n20 = -sY;     val n21 = cY * sX;                val n22 = cY * cX;                val n23 = 0.0;
+//    val n30 = 0.0;     val n31 = 0.0;                    val n32 = 0.0;                    val n33 = 1.0;
     //
     val n00 = cZ * cY; val n01 = cZ * sY * sX - sZ * cX; val n02 = cZ * sY * cX + sZ * sX; val n03 = 0.0;
     val n10 = sZ * cY; val n11 = sZ * sY * sX + cZ * cX; val n12 = sZ * sY * cX - cZ * sX; val n13 = 0.0;
