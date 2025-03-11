@@ -8,10 +8,10 @@ interface Size {
     val height: Double
 }
 
-fun Size.center(dZ: Double): Offset {
+fun Size.toOffset(dZ: Double, scale: Double): Offset {
     return MutableOffset(
-        dX = width / 2,
-        dY = height / 2,
+        dX = width * scale,
+        dY = height * scale,
         dZ = dZ,
     )
 }

@@ -17,4 +17,8 @@ class MutableRotation(
     override fun hashCode(): Int {
         return Objects.hash(aX, aY, aZ)
     }
+
+    override fun toString(): String {
+        return "Rotation(aX: ${String.format("%.2f", aX)}, aY: ${String.format("%.2f", aY)}, aZ: ${String.format("%.2f", aZ)})"
+    }
 }
