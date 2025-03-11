@@ -43,6 +43,19 @@ internal class VertexRotationsTest {
                     MutableRotation(0.0, aY = pi32, 0.0),
                     MutableVertex(0.0, 0.0, -1.0),
                 ),
+                //
+                Pair(
+                    MutableRotation(pi12, 0.0, pi12),
+                    MutableVertex(0.0, 0.0, 1.0),
+                ),
+                Pair(
+                    MutableRotation(pi12, pi12, 0.0),
+                    MutableVertex(0.0, -1.0, 0.0),
+                ),
+                Pair(
+                    MutableRotation(-pi12, pi12, 0.0),
+                    MutableVertex(0.0, 1.0, 0.0),
+                ),
             ),
             MutableVertex(0.0, 1.0, 0.0) to listOf(
                 Pair(
@@ -62,6 +75,15 @@ internal class VertexRotationsTest {
                     MutableRotation(pi32, 0.0, 0.0),
                     MutableVertex(0.0, 0.0, -1.0),
                 ),
+                //
+                Pair(
+                    MutableRotation(0.0, pi12, pi12),
+                    MutableVertex(0.0, 0.0, -1.0),
+                ),
+                Pair(
+                    MutableRotation(0.0, pi12, -pi12),
+                    MutableVertex(0.0, 0.0, 1.0),
+                ),
             ),
         ).forEachIndexed { i, (vertex, issues) ->
             issues.forEachIndexed { j, issue ->
@@ -76,6 +98,7 @@ internal class VertexRotationsTest {
                 )
                 val message = """
                     $i/$j
+                    v: $vertex
                     e: $expected
                     a: $actual
                     r: $rotation
