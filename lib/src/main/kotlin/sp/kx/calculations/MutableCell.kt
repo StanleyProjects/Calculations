@@ -17,3 +17,10 @@ class MutableCell(
         return Objects.hash(x, y)
     }
 }
+
+fun Cell.mut(): MutableCell {
+    return MutableCell(
+        x = x,
+        y = y,
+    )
+}
