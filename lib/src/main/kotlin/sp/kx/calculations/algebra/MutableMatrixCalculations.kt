@@ -8,5 +8,8 @@ fun MutableMatrix.identity() {
 }
 
 fun MutableMatrix.translate(dX: Double, dY: Double, dZ: Double) {
-    TODO("MutableMatrix:translate($dX, $dY, $dZ)")
+    m03 += m00 * dX + m01 * dY + m02 * dZ
+    m13 += m10 * dX + m11 * dY + m12 * dZ
+    m23 += m20 * dX + m21 * dY + m22 * dZ
+    m33 += m30 * dX + m31 * dY + m32 * dZ
 }
