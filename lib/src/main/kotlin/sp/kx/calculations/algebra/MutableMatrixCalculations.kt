@@ -157,22 +157,27 @@ fun MutableMatrix.rotate(aX: Double, aY: Double, aZ: Double) {
 //    val n02 = z00 * y02 + z01 * y12 + z02 * y22 + z03 * y32
 //    val n03 = z00 * y03 + z01 * y13 + z02 * y23 + z03 * y33
     //
-    val a00 = x00 * y00 + x01 * y10 + x02 * y20 + x03 * y30
-    val a01 = x00 * y01 + x01 * y11 + x02 * y21 + x03 * y31
-    val a02 = x00 * y02 + x01 * y12 + x02 * y22 + x03 * y32
-    val a03 = x00 * y03 + x01 * y13 + x02 * y23 + x03 * y33
-    val a10 = x10 * y00 + x11 * y10 + x12 * y20 + x13 * y30
-    val a11 = x10 * y01 + x11 * y11 + x12 * y21 + x13 * y31
-    val a12 = x10 * y02 + x11 * y12 + x12 * y22 + x13 * y32
-    val a13 = x10 * y03 + x11 * y13 + x12 * y23 + x13 * y33
-    val a20 = x20 * y00 + x21 * y10 + x22 * y20 + x23 * y30
-    val a21 = x20 * y01 + x21 * y11 + x22 * y21 + x23 * y31
-    val a22 = x20 * y02 + x21 * y12 + x22 * y22 + x23 * y32
-    val a23 = x20 * y03 + x21 * y13 + x22 * y23 + x23 * y33
-    val a30 = x30 * y00 + x31 * y10 + x32 * y20 + x33 * y30
-    val a31 = x30 * y01 + x31 * y11 + x32 * y21 + x33 * y31
-    val a32 = x30 * y02 + x31 * y12 + x32 * y22 + x33 * y32
-    val a33 = x30 * y03 + x31 * y13 + x32 * y23 + x33 * y33
+//    val a00 = 1.0 * y00 + 0.0 * y10 + 0.0 * y20 + 0.0 * y30
+//    val a01 = 1.0 * y01 + 0.0 * y11 + 0.0 * y21 + 0.0 * y31
+//    val a02 = 1.0 * y02 + 0.0 * y12 + 0.0 * y22 + 0.0 * y32
+//    val a03 = 1.0 * y03 + 0.0 * y13 + 0.0 * y23 + 0.0 * y33
+//    val a10 = 0.0 * y00 + x11 * y10 + x12 * y20 + 0.0 * y30
+//    val a11 = 0.0 * y01 + x11 * y11 + x12 * y21 + 0.0 * y31
+//    val a12 = 0.0 * y02 + x11 * y12 + x12 * y22 + 0.0 * y32
+//    val a13 = 0.0 * y03 + x11 * y13 + x12 * y23 + 0.0 * y33
+//    val a20 = 0.0 * y00 + x21 * y10 + x22 * y20 + 0.0 * y30
+//    val a21 = 0.0 * y01 + x21 * y11 + x22 * y21 + 0.0 * y31
+//    val a22 = 0.0 * y02 + x21 * y12 + x22 * y22 + 0.0 * y32
+//    val a23 = 0.0 * y03 + x21 * y13 + x22 * y23 + 0.0 * y33
+//    val a30 = 0.0 * y00 + 0.0 * y10 + 0.0 * y20 + 1.0 * y30
+//    val a31 = 0.0 * y01 + 0.0 * y11 + 0.0 * y21 + 1.0 * y31
+//    val a32 = 0.0 * y02 + 0.0 * y12 + 0.0 * y22 + 1.0 * y32
+//    val a33 = 0.0 * y03 + 0.0 * y13 + 0.0 * y23 + 1.0 * y33
+    //
+    val a00 = y00; val a01 = 0.0; val a02 = y02; val a03 = 0.0
+    val a10 = x12 * y20; val a11 = x11; val a12 = x12 * y22; val a13 = 0.0
+    val a20 = x22 * y20; val a21 = x21; val a22 = x22 * y22; val a23 = 0.0
+    val a30 = 0.0; val a31 = 0.0; val a32 = 0.0; val a33 = 1.0
     //
 //    val a00 = z00 * y00; val a01 = z01; val a02 = z00 * y02; val a03 = 0.0
 //    val a10 = z10 * y00; val a11 = z11; val a12 = z10 * y02; val a13 = 0.0
@@ -213,22 +218,39 @@ fun MutableMatrix.rotate(aX: Double, aY: Double, aZ: Double) {
 //    val n32 = z30 * y02 + z31 * y12 + z32 * y22 + z33 * y32
 //    val n33 = z30 * y03 + z31 * y13 + z32 * y23 + z33 * y33
     //
-    val n00 = a00 * z00 + a01 * z10 + a02 * z20 + a03 * z30
-    val n01 = a00 * z01 + a01 * z11 + a02 * z21 + a03 * z31
-    val n02 = a00 * z02 + a01 * z12 + a02 * z22 + a03 * z32
-    val n03 = a00 * z03 + a01 * z13 + a02 * z23 + a03 * z33
-    val n10 = a10 * z00 + a11 * z10 + a12 * z20 + a13 * z30
-    val n11 = a10 * z01 + a11 * z11 + a12 * z21 + a13 * z31
-    val n12 = a10 * z02 + a11 * z12 + a12 * z22 + a13 * z32
-    val n13 = a10 * z03 + a11 * z13 + a12 * z23 + a13 * z33
-    val n20 = a20 * z00 + a21 * z10 + a22 * z20 + a23 * z30
-    val n21 = a20 * z01 + a21 * z11 + a22 * z21 + a23 * z31
-    val n22 = a20 * z02 + a21 * z12 + a22 * z22 + a23 * z32
-    val n23 = a20 * z03 + a21 * z13 + a22 * z23 + a23 * z33
-    val n30 = a30 * z00 + a31 * z10 + a32 * z20 + a33 * z30
-    val n31 = a30 * z01 + a31 * z11 + a32 * z21 + a33 * z31
-    val n32 = a30 * z02 + a31 * z12 + a32 * z22 + a33 * z32
-    val n33 = a30 * z03 + a31 * z13 + a32 * z23 + a33 * z33
+//    val n00 = a00 * z00 + a01 * z10 + a02 * z20 + a03 * z30
+//    val n01 = a00 * z01 + a01 * z11 + a02 * z21 + a03 * z31
+//    val n02 = a00 * z02 + a01 * z12 + a02 * z22 + a03 * z32
+//    val n03 = a00 * z03 + a01 * z13 + a02 * z23 + a03 * z33
+//    val n10 = a10 * z00 + a11 * z10 + a12 * z20 + a13 * z30
+//    val n11 = a10 * z01 + a11 * z11 + a12 * z21 + a13 * z31
+//    val n12 = a10 * z02 + a11 * z12 + a12 * z22 + a13 * z32
+//    val n13 = a10 * z03 + a11 * z13 + a12 * z23 + a13 * z33
+//    val n20 = a20 * z00 + a21 * z10 + a22 * z20 + a23 * z30
+//    val n21 = a20 * z01 + a21 * z11 + a22 * z21 + a23 * z31
+//    val n22 = a20 * z02 + a21 * z12 + a22 * z22 + a23 * z32
+//    val n23 = a20 * z03 + a21 * z13 + a22 * z23 + a23 * z33
+//    val n30 = a30 * z00 + a31 * z10 + a32 * z20 + a33 * z30
+//    val n31 = a30 * z01 + a31 * z11 + a32 * z21 + a33 * z31
+//    val n32 = a30 * z02 + a31 * z12 + a32 * z22 + a33 * z32
+//    val n33 = a30 * z03 + a31 * z13 + a32 * z23 + a33 * z33
+    //
+    val n00 = y00 * z00
+    val n01 = y00 * z01
+    val n02 = y02
+    val n03 = 0.0
+    val n10 = x12 * y20 * z00 + x11 * z10
+    val n11 = x12 * y20 * z01 + x11 * z11
+    val n12 = x12 * y22
+    val n13 = 0.0
+    val n20 = x22 * y20 * z00 + x21 * z10
+    val n21 = x22 * y20 * z01 + x21 * z11
+    val n22 = x22 * y22
+    val n23 = 0.0
+    val n30 = 0.0
+    val n31 = 0.0
+    val n32 = 0.0
+    val n33 = 1.0
     //
     val m00 = this.m00 * n00 + this.m01 * n10 + this.m02 * n20 + this.m03 * n30
     val m01 = this.m00 * n01 + this.m01 * n11 + this.m02 * n21 + this.m03 * n31
