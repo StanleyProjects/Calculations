@@ -32,9 +32,14 @@ internal class MutableMatrixCalculationsTest {
         val delta = 0.00000001
         val exponent = 8
         val pi12 = kotlin.math.PI / 2
+        val pi13 = kotlin.math.PI / 3
         val pi22 = kotlin.math.PI
         val pi32 = kotlin.math.PI / 2 * 3
-        val rotation = MutableRotation(0.0, pi12, pi12)
+//        val rotation = MutableRotation(0.0, 0.0, 0.0)
+//        val rotation = MutableRotation(0.0, 0.0, pi12)
+//        val rotation = MutableRotation(0.0, pi12, pi12)
+//        val rotation = MutableRotation(pi12, pi12, pi12)
+        val rotation = MutableRotation(pi13, pi13, pi13)
         val actual = MutableMatrix()
         actual.identity()
         actual.rotate(aX = rotation.aX, aY = rotation.aY, aZ = rotation.aZ)
@@ -43,6 +48,8 @@ internal class MutableMatrixCalculationsTest {
         expected.rx(rotation.aX)
         expected.ry(rotation.aY)
         expected.rz(rotation.aZ)
+//        expected.ry(rotation.aY)
+//        expected.rx(rotation.aX)
         val message = """
             rotation: $rotation
         """.trimIndent()
@@ -64,35 +71,6 @@ internal class MutableMatrixCalculationsTest {
         val pi32 = kotlin.math.PI / 2 * 3
         val matrix = MutableMatrix()
         listOf(
-            MutableVertex(0.0, 1.0, 0.0) to listOf(
-                // 00
-                Pair(
-                    MutableRotation(0.0, 0.0, 0.0),
-                    MutableVertex(0.0, 1.0, 0.0),
-                ),
-                // 01
-                Pair(
-                    MutableRotation(pi12, 0.0, 0.0),
-                    MutableVertex(0.0, 0.0, 1.0),
-                ),
-                Pair(
-                    MutableRotation(pi22, 0.0, 0.0),
-                    MutableVertex(0.0, -1.0, 0.0),
-                ),
-                Pair(
-                    MutableRotation(pi32, 0.0, 0.0),
-                    MutableVertex(0.0, 0.0, -1.0),
-                ),
-                // 04
-                Pair(
-                    MutableRotation(0.0, pi12, pi12),
-                    MutableVertex(0.0, 0.0, -1.0),
-                ),
-                Pair(
-                    MutableRotation(0.0, pi12, -pi12),
-                    MutableVertex(0.0, 0.0, 1.0),
-                ),
-            ),
             MutableVertex(1.0, 0.0, 0.0) to listOf(
                 // 00
                 Pair(
@@ -139,6 +117,34 @@ internal class MutableMatrixCalculationsTest {
                     MutableVertex(0.0, 1.0, 0.0),
                 ),
             ),
+            MutableVertex(0.0, 1.0, 0.0) to listOf(
+                Pair(
+                    MutableRotation(0.0, 0.0, 0.0),
+                    MutableVertex(0.0, 1.0, 0.0),
+                ),
+                //
+                Pair(
+                    MutableRotation(pi12, 0.0, 0.0),
+                    MutableVertex(0.0, 0.0, 1.0),
+                ),
+                Pair(
+                    MutableRotation(pi22, 0.0, 0.0),
+                    MutableVertex(0.0, -1.0, 0.0),
+                ),
+                Pair(
+                    MutableRotation(pi32, 0.0, 0.0),
+                    MutableVertex(0.0, 0.0, -1.0),
+                ),
+                //
+                Pair(
+                    MutableRotation(0.0, pi12, pi12),
+                    MutableVertex(0.0, 0.0, -1.0),
+                ),
+                Pair(
+                    MutableRotation(0.0, pi12, -pi12),
+                    MutableVertex(0.0, 0.0, 1.0),
+                ),
+            ),
         ).forEachIndexed { i, (vertex, issues) ->
             issues.forEachIndexed { j, (rotation, expected) ->
                 matrix.identity()
@@ -149,6 +155,107 @@ internal class MutableMatrixCalculationsTest {
 //                matrix.rx(rotation.aX)
 //                matrix.ry(rotation.aY)
 //                matrix.rz(rotation.aZ)
+                val actual = vertex * matrix
+                val message = """
+                    $i/$j
+                    v: $vertex
+                    e: $expected
+                    a: $actual
+                    r: $rotation
+                """.trimIndent()
+                assertEquals(expected = expected, actual = actual, delta = delta, exponent = exponent, message = message)
+            }
+        }
+    }
+
+    @Test
+    fun rzyxTest() {
+        val delta = 0.00000001
+        val exponent = 8
+        val pi12 = kotlin.math.PI / 2
+        val pi22 = kotlin.math.PI
+        val pi32 = kotlin.math.PI / 2 * 3
+        val matrix = MutableMatrix()
+        listOf(
+            MutableVertex(1.0, 0.0, 0.0) to listOf(
+                Pair(
+                    MutableRotation(0.0, 0.0, 0.0),
+                    MutableVertex(1.0, 0.0, 0.0),
+                ),
+                //
+                Pair(
+                    MutableRotation(0.0, 0.0, pi12),
+                    MutableVertex(0.0, 1.0, 0.0),
+                ),
+                Pair(
+                    MutableRotation(0.0, 0.0, pi22),
+                    MutableVertex(-1.0, 0.0, 0.0),
+                ),
+                Pair(
+                    MutableRotation(0.0, 0.0, pi32),
+                    MutableVertex(0.0, -1.0, 0.0),
+                ),
+                //
+                Pair(
+                    MutableRotation(0.0, pi12, 0.0),
+                    MutableVertex(0.0, 0.0, 1.0),
+                ),
+                Pair(
+                    MutableRotation(0.0, pi22, 0.0),
+                    MutableVertex(-1.0, 0.0, 0.0),
+                ),
+                Pair(
+                    MutableRotation(0.0, pi32, 0.0),
+                    MutableVertex(0.0, 0.0, -1.0),
+                ),
+                //
+                Pair(
+                    MutableRotation(pi12, 0.0, pi12),
+                    MutableVertex(0.0, 0.0, 1.0),
+                ),
+                Pair(
+                    MutableRotation(pi12, pi12, 0.0),
+                    MutableVertex(0.0, -1.0, 0.0),
+                ),
+                Pair(
+                    MutableRotation(-pi12, pi12, 0.0),
+                    MutableVertex(0.0, 1.0, 0.0),
+                ),
+            ),
+            MutableVertex(0.0, 1.0, 0.0) to listOf(
+                Pair(
+                    MutableRotation(0.0, 0.0, 0.0),
+                    MutableVertex(0.0, 1.0, 0.0),
+                ),
+                //
+                Pair(
+                    MutableRotation(pi12, 0.0, 0.0),
+                    MutableVertex(0.0, 0.0, 1.0),
+                ),
+                Pair(
+                    MutableRotation(pi22, 0.0, 0.0),
+                    MutableVertex(0.0, -1.0, 0.0),
+                ),
+                Pair(
+                    MutableRotation(pi32, 0.0, 0.0),
+                    MutableVertex(0.0, 0.0, -1.0),
+                ),
+                //
+                Pair(
+                    MutableRotation(0.0, pi12, pi12),
+                    MutableVertex(0.0, 0.0, -1.0),
+                ),
+                Pair(
+                    MutableRotation(0.0, pi12, -pi12),
+                    MutableVertex(0.0, 0.0, 1.0),
+                ),
+            ),
+        ).forEachIndexed { i, (vertex, issues) ->
+            issues.forEachIndexed { j, (rotation, expected) ->
+                matrix.identity()
+                matrix.rx(rotation.aX)
+                matrix.ry(rotation.aY)
+                matrix.rz(rotation.aZ)
                 val actual = vertex * matrix
                 val message = """
                     $i/$j
