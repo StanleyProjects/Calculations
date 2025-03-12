@@ -14,9 +14,9 @@ internal object Assertions {
         exponent: Int,
         message: String,
     ) {
-        assertEquals(expected.x, actual.x, delta)
-        assertEquals(expected.y, actual.y, delta)
-        assertEquals(expected.z, actual.z, delta)
+        assertEquals(expected.x, actual.x, delta, message)
+        assertEquals(expected.y, actual.y, delta, message)
+        assertEquals(expected.z, actual.z, delta, message)
         assertTrue(actual.eq(expected, exponent), message)
     }
 

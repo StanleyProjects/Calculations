@@ -2,6 +2,7 @@ package sp.kx.calculations.algebra
 
 import org.junit.jupiter.api.Test
 import sp.kx.calculations.Assertions.assertEquals
+import sp.kx.calculations.geometry.MutableOffset
 import sp.kx.calculations.geometry.MutableRotation
 import sp.kx.calculations.geometry.MutableVertex
 import sp.kx.calculations.operators.times
@@ -450,5 +451,32 @@ internal class MutableMatrixCalculationsTest {
                 assertEquals(expected = expected, actual = actual, delta = delta, exponent = exponent, message = message)
             }
         }
+    }
+
+    @Test
+    fun rtsTest() {
+        val delta = 0.00000001
+        val exponent = 8
+        val pi12 = kotlin.math.PI / 2
+        val vertex = MutableVertex(1.0, 0.0, 3.0)
+        val offset = MutableOffset(0.0, 0.0, 4.0)
+        val rotation = MutableRotation(pi12, 0.0, pi12)
+        val scale = 3.0
+        val matrix = MutableMatrix()
+        matrix.identity()
+        matrix.scale(scale)
+        matrix.translate(offset.dX, offset.dY, offset.dZ)
+        matrix.rotate(rotation.aX, rotation.aY, rotation.aZ)
+        val actual = vertex * matrix
+        val expected = MutableVertex(0.0, -9.0, 15.0)
+        val message = """
+            v: $vertex
+            e: $expected
+            a: $actual
+            offset: $offset
+            rotation: $rotation
+            scale: $scale
+        """.trimIndent()
+        assertEquals(expected = expected, actual = actual, delta = delta, exponent = exponent, message = message)
     }
 }
