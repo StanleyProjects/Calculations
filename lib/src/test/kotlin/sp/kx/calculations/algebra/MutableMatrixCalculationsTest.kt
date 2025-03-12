@@ -406,4 +406,49 @@ internal class MutableMatrixCalculationsTest {
             }
         }
     }
+
+    @Test
+    fun scaleTest() {
+        val delta = 0.00000001
+        val exponent = 8
+        val matrix = MutableMatrix()
+        listOf(
+            MutableVertex(1.0, 2.0, 3.0) to listOf(
+                Pair(
+                    -1.0,
+                    MutableVertex(-1.0, -2.0, -3.0),
+                ),
+                Pair(
+                    0.0,
+                    MutableVertex(0.0, 0.0, 0.0),
+                ),
+                Pair(
+                    1.0,
+                    MutableVertex(1.0, 2.0, 3.0),
+                ),
+                Pair(
+                    2.0,
+                    MutableVertex(2.0, 4.0, 6.0),
+                ),
+                Pair(
+                    12.34,
+                    MutableVertex(12.34, 24.68, 37.02),
+                ),
+            ),
+        ).forEachIndexed { i, (vertex, issues) ->
+            issues.forEachIndexed { j, (scale, expected) ->
+                matrix.identity()
+                matrix.scale(value = scale)
+                val actual = vertex * matrix
+                val message = """
+                    $i/$j
+                    v: $vertex
+                    e: $expected
+                    a: $actual
+                    scale: $scale
+                """.trimIndent()
+                assertEquals(expected = expected, actual = actual, delta = delta, exponent = exponent, message = message)
+            }
+        }
+    }
 }

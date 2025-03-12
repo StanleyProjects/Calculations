@@ -294,3 +294,10 @@ private fun MutableMatrix.rotateZYX(aX: Double, aY: Double, aZ: Double) {
     this.m20 = m20; this.m21 = m21; this.m22 = m22
     this.m30 = m30; this.m31 = m31; this.m32 = m32
 }
+
+fun MutableMatrix.scale(value: Double) {
+    m00 *= value; m01 *= value; m02 *= value
+    m10 *= value; m11 *= value; m12 *= value
+    m20 *= value; m21 *= value; m22 *= value
+    m30 *= value; m31 *= value; m32 *= value
+}
