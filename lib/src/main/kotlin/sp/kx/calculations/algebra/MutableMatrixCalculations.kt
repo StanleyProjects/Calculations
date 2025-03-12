@@ -127,6 +127,40 @@ fun MutableMatrix.rotate(aX: Double, aY: Double, aZ: Double) {
     val sY = kotlin.math.sin(aY)
     val sZ = kotlin.math.sin(aZ)
     //
+    val n00 = cY * cZ; val n01 = cY * -sZ; val n02 = -sY
+    val n10 = -sX * sY * cZ + cX * sZ; val n11 = -sX * sY * -sZ + cX * cZ; val n12 = -sX * cY
+    val n20 = cX * sY * cZ + sX * sZ; val n21 = cX * sY * -sZ + sX * cZ; val n22 = cX * cY
+    //
+    val m00 = this.m00 * n00 + this.m01 * n10 + this.m02 * n20
+    val m01 = this.m00 * n01 + this.m01 * n11 + this.m02 * n21
+    val m02 = this.m00 * n02 + this.m01 * n12 + this.m02 * n22
+    //
+    val m10 = this.m10 * n00 + this.m11 * n10 + this.m12 * n20
+    val m11 = this.m10 * n01 + this.m11 * n11 + this.m12 * n21
+    val m12 = this.m10 * n02 + this.m11 * n12 + this.m12 * n22
+    //
+    val m20 = this.m20 * n00 + this.m21 * n10 + this.m22 * n20
+    val m21 = this.m20 * n01 + this.m21 * n11 + this.m22 * n21
+    val m22 = this.m20 * n02 + this.m21 * n12 + this.m22 * n22
+    //
+    val m30 = this.m30 * n00 + this.m31 * n10 + this.m32 * n20
+    val m31 = this.m30 * n01 + this.m31 * n11 + this.m32 * n21
+    val m32 = this.m30 * n02 + this.m31 * n12 + this.m32 * n22
+    //
+    this.m00 = m00; this.m01 = m01; this.m02 = m02
+    this.m10 = m10; this.m11 = m11; this.m12 = m12
+    this.m20 = m20; this.m21 = m21; this.m22 = m22
+    this.m30 = m30; this.m31 = m31; this.m32 = m32
+}
+
+private fun MutableMatrix.rotateZYX(aX: Double, aY: Double, aZ: Double) {
+    val cX = kotlin.math.cos(aX)
+    val cY = kotlin.math.cos(aY)
+    val cZ = kotlin.math.cos(aZ)
+    val sX = kotlin.math.sin(aX)
+    val sY = kotlin.math.sin(aY)
+    val sZ = kotlin.math.sin(aZ)
+    //
     val x00 = 1.0; val x01 = 0.0; val x02 = 0.0; val x03 = 0.0;
     val x10 = 0.0; val x11 = cX;  val x12 = -sX; val x13 = 0.0;
     val x20 = 0.0; val x21 = sX;  val x22 = cX;  val x23 = 0.0;
@@ -235,45 +269,28 @@ fun MutableMatrix.rotate(aX: Double, aY: Double, aZ: Double) {
 //    val n32 = a30 * z02 + a31 * z12 + a32 * z22 + a33 * z32
 //    val n33 = a30 * z03 + a31 * z13 + a32 * z23 + a33 * z33
     //
-    val n00 = y00 * z00
-    val n01 = y00 * z01
-    val n02 = y02
-    val n03 = 0.0
-    val n10 = x12 * y20 * z00 + x11 * z10
-    val n11 = x12 * y20 * z01 + x11 * z11
-    val n12 = x12 * y22
-    val n13 = 0.0
-    val n20 = x22 * y20 * z00 + x21 * z10
-    val n21 = x22 * y20 * z01 + x21 * z11
-    val n22 = x22 * y22
-    val n23 = 0.0
-    val n30 = 0.0
-    val n31 = 0.0
-    val n32 = 0.0
-    val n33 = 1.0
+    val n00 = y00 * z00; val n01 = y00 * z01; val n02 = y02
+    val n10 = x12 * y20 * z00 + x11 * z10; val n11 = x12 * y20 * z01 + x11 * z11; val n12 = x12 * y22
+    val n20 = x22 * y20 * z00 + x21 * z10; val n21 = x22 * y20 * z01 + x21 * z11; val n22 = x22 * y22
     //
-    val m00 = this.m00 * n00 + this.m01 * n10 + this.m02 * n20 + this.m03 * n30
-    val m01 = this.m00 * n01 + this.m01 * n11 + this.m02 * n21 + this.m03 * n31
-    val m02 = this.m00 * n02 + this.m01 * n12 + this.m02 * n22 + this.m03 * n32
-    val m03 = this.m00 * n03 + this.m01 * n13 + this.m02 * n23 + this.m03 * n33
+    val m00 = this.m00 * n00 + this.m01 * n10 + this.m02 * n20
+    val m01 = this.m00 * n01 + this.m01 * n11 + this.m02 * n21
+    val m02 = this.m00 * n02 + this.m01 * n12 + this.m02 * n22
     //
-    val m10 = this.m10 * n00 + this.m11 * n10 + this.m12 * n20 + this.m13 * n30
-    val m11 = this.m10 * n01 + this.m11 * n11 + this.m12 * n21 + this.m13 * n31
-    val m12 = this.m10 * n02 + this.m11 * n12 + this.m12 * n22 + this.m13 * n32
-    val m13 = this.m10 * n03 + this.m11 * n13 + this.m12 * n23 + this.m13 * n33
+    val m10 = this.m10 * n00 + this.m11 * n10 + this.m12 * n20
+    val m11 = this.m10 * n01 + this.m11 * n11 + this.m12 * n21
+    val m12 = this.m10 * n02 + this.m11 * n12 + this.m12 * n22
     //
-    val m20 = this.m20 * n00 + this.m21 * n10 + this.m22 * n20 + this.m23 * n30
-    val m21 = this.m20 * n01 + this.m21 * n11 + this.m22 * n21 + this.m23 * n31
-    val m22 = this.m20 * n02 + this.m21 * n12 + this.m22 * n22 + this.m23 * n32
-    val m23 = this.m20 * n03 + this.m21 * n13 + this.m22 * n23 + this.m23 * n33
+    val m20 = this.m20 * n00 + this.m21 * n10 + this.m22 * n20
+    val m21 = this.m20 * n01 + this.m21 * n11 + this.m22 * n21
+    val m22 = this.m20 * n02 + this.m21 * n12 + this.m22 * n22
     //
-    val m30 = this.m30 * n00 + this.m31 * n10 + this.m32 * n20 + this.m33 * n30
-    val m31 = this.m30 * n01 + this.m31 * n11 + this.m32 * n21 + this.m33 * n31
-    val m32 = this.m30 * n02 + this.m31 * n12 + this.m32 * n22 + this.m33 * n32
-    val m33 = this.m30 * n03 + this.m31 * n13 + this.m32 * n23 + this.m33 * n33
+    val m30 = this.m30 * n00 + this.m31 * n10 + this.m32 * n20
+    val m31 = this.m30 * n01 + this.m31 * n11 + this.m32 * n21
+    val m32 = this.m30 * n02 + this.m31 * n12 + this.m32 * n22
     //
-    this.m00 = m00; this.m01 = m01; this.m02 = m02; this.m03 = m03
-    this.m10 = m10; this.m11 = m11; this.m12 = m12; this.m13 = m13
-    this.m20 = m20; this.m21 = m21; this.m22 = m22; this.m23 = m23
-    this.m30 = m30; this.m31 = m31; this.m32 = m32; this.m33 = m33
+    this.m00 = m00; this.m01 = m01; this.m02 = m02
+    this.m10 = m10; this.m11 = m11; this.m12 = m12
+    this.m20 = m20; this.m21 = m21; this.m22 = m22
+    this.m30 = m30; this.m31 = m31; this.m32 = m32
 }
