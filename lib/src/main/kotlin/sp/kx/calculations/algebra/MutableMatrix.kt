@@ -38,11 +38,25 @@ class MutableMatrix(
         )
     }
 
+    @Suppress("ktlint:standard:wrapping")
     fun set(other: Matrix) {
         m00 = other.m00; m01 = other.m01; m02 = other.m02; m03 = other.m03
         m10 = other.m10; m11 = other.m11; m12 = other.m12; m13 = other.m13
         m20 = other.m20; m21 = other.m21; m22 = other.m22; m23 = other.m23
         m30 = other.m30; m31 = other.m31; m32 = other.m32; m33 = other.m33
+    }
+
+    companion object {
+        fun ofRotationX(radians: Double): MutableMatrix {
+            val c = kotlin.math.cos(radians)
+            val s = kotlin.math.sin(radians)
+            return MutableMatrix(
+                m00 = 1.0, m01 = 0.0, m02 = 0.0, m03 = 0.0,
+                m10 = 0.0, m11 = c, m12 = -s, m13 = 0.0,
+                m20 = 0.0, m21 = s, m22 = c, m23 = 0.0,
+                m30 = 0.0, m31 = 0.0, m32 = 0.0, m33 = 1.0,
+            )
+        }
     }
 }
 

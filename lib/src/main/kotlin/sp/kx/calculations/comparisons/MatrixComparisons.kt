@@ -2,6 +2,7 @@ package sp.kx.calculations.comparisons
 
 import sp.kx.calculations.algebra.Matrix
 
+@Suppress("ktlint:standard:indent")
 fun Matrix.eq(other: Matrix, exponent: Int): Boolean {
     return m00.eq(other.m00, exponent) && m10.eq(other.m10, exponent) && m20.eq(other.m20, exponent) && m30.eq(other.m30, exponent) &&
            m01.eq(other.m01, exponent) && m11.eq(other.m11, exponent) && m21.eq(other.m21, exponent) && m31.eq(other.m31, exponent) &&

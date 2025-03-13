@@ -17,6 +17,7 @@ interface Matrix {
     }
 }
 
+@Suppress("ktlint:standard:parameter-list-wrapping")
 fun Matrix.copy(
     m00: Double = this.m00, m01: Double = this.m01, m02: Double = this.m02, m03: Double = this.m03,
     m10: Double = this.m10, m11: Double = this.m11, m12: Double = this.m12, m13: Double = this.m13,
