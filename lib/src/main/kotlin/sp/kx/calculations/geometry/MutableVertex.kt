@@ -22,3 +22,11 @@ class MutableVertex(
         return "Vertex(x: ${String.format("%.2f", x)}, y: ${String.format("%.2f", y)}, z: ${String.format("%.2f", z)})"
     }
 }
+
+fun Vertex.mut(): MutableVertex {
+    return MutableVertex(
+        x = x,
+        y = y,
+        z = z,
+    )
+}

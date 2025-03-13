@@ -22,3 +22,11 @@ class MutableRotation(
         return "Rotation(aX: ${String.format("%.2f", aX)}, aY: ${String.format("%.2f", aY)}, aZ: ${String.format("%.2f", aZ)})"
     }
 }
+
+fun Rotation.mut(): MutableRotation {
+    return MutableRotation(
+        aX = aX,
+        aY = aY,
+        aZ = aZ,
+    )
+}
