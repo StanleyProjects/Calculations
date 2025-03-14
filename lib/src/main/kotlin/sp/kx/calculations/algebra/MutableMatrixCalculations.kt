@@ -141,6 +141,7 @@ fun MutableMatrix.scale(value: Double) {
     m30 *= value; m31 *= value; m32 *= value
 }
 
+// https://en.wikipedia.org/wiki/Rotation_matrix
 @Suppress("ktlint:standard:wrapping")
 private fun MutableMatrix.rotateZYX(aX: Double, aY: Double, aZ: Double) {
     val cX = kotlin.math.cos(aX)

@@ -21,6 +21,16 @@ class MutableVertex(
     override fun toString(): String {
         return "Vertex(x: ${String.format("%.2f", x)}, y: ${String.format("%.2f", y)}, z: ${String.format("%.2f", z)})"
     }
+
+    fun set(
+        x: Double,
+        y: Double,
+        z: Double,
+    ) {
+        this.x = x
+        this.y = y
+        this.z = z
+    }
 }
 
 fun Vertex.mut(): MutableVertex {

@@ -1,9 +1,244 @@
 package sp.kx.calculations.geometry
 
 import org.junit.jupiter.api.Test
+import sp.kx.calculations.Assertions
 import sp.kx.calculations.Assertions.assertEquals
 
 internal class VertexRotationsTest {
+    @Test
+    fun rxTest() {
+        val delta = 0.00000001
+        val exponent = 8
+        val pi12 = kotlin.math.PI / 2
+        val pi22 = kotlin.math.PI
+        val pi32 = kotlin.math.PI * 2 - pi12
+        val pi42 = kotlin.math.PI * 2
+        listOf(
+            MutableVertex(0.0, 1.0, 0.0) to listOf(
+                Pair(
+                    0.0,
+                    MutableVertex(0.0, 1.0, 0.0),
+                ), // 00
+                Pair(
+                    pi12,
+                    MutableVertex(0.0, 0.0, 1.0),
+                ), // 01
+                Pair(
+                    pi22,
+                    MutableVertex(0.0, -1.0, 0.0),
+                ), // 02
+                Pair(
+                    pi32,
+                    MutableVertex(0.0, 0.0, -1.0),
+                ), // 03
+                Pair(
+                    pi42,
+                    MutableVertex(0.0, 1.0, 0.0),
+                ), // 04
+            ),
+        ).forEachIndexed { i, (vertex, issues) ->
+            issues.forEachIndexed { j, (radians, expected) ->
+                val actual = rx(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    radians = radians,
+                )
+                val message = """
+                    $i/$j
+                    v: $vertex
+                    r: $radians
+                    e: $expected
+                    a: $actual
+                """.trimIndent()
+                assertEquals(
+                    expected = expected,
+                    actual = actual,
+                    delta = delta,
+                    exponent = exponent,
+                    message = message,
+                )
+            }
+        }
+    }
+
+    @Test
+    fun ryTest() {
+        val delta = 0.00000001
+        val exponent = 8
+        val pi12 = kotlin.math.PI / 2
+        val pi22 = kotlin.math.PI
+        val pi32 = kotlin.math.PI * 2 - pi12
+        val pi42 = kotlin.math.PI * 2
+        listOf(
+            MutableVertex(1.0, 0.0, 0.0) to listOf(
+                Pair(
+                    0.0,
+                    MutableVertex(1.0, 0.0, 0.0),
+                ), // 00
+                Pair(
+                    pi12,
+                    MutableVertex(0.0, 0.0, 1.0),
+                ), // 01
+                Pair(
+                    pi22,
+                    MutableVertex(-1.0, 0.0, 0.0),
+                ), // 02
+                Pair(
+                    pi32,
+                    MutableVertex(0.0, 0.0, -1.0),
+                ), // 03
+                Pair(
+                    pi42,
+                    MutableVertex(1.0, 0.0, 0.0),
+                ), // 04
+            ),
+        ).forEachIndexed { i, (vertex, issues) ->
+            issues.forEachIndexed { j, (radians, expected) ->
+                val actual = ry(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    radians = radians,
+                )
+                val message = """
+                    $i/$j
+                    v: $vertex
+                    r: $radians
+                    e: $expected
+                    a: $actual
+                """.trimIndent()
+                assertEquals(
+                    expected = expected,
+                    actual = actual,
+                    delta = delta,
+                    exponent = exponent,
+                    message = message,
+                )
+            }
+        }
+    }
+
+    @Test
+    fun rzTest() {
+        val delta = 0.00000001
+        val exponent = 8
+        val pi12 = kotlin.math.PI / 2
+        val pi22 = kotlin.math.PI
+        val pi32 = kotlin.math.PI * 2 - pi12
+        val pi42 = kotlin.math.PI * 2
+        listOf(
+            MutableVertex(1.0, 0.0, 0.0) to listOf(
+                Pair(
+                    0.0,
+                    MutableVertex(1.0, 0.0, 0.0),
+                ), // 00
+                Pair(
+                    pi12,
+                    MutableVertex(0.0, 1.0, 0.0),
+                ), // 01
+                Pair(
+                    pi22,
+                    MutableVertex(-1.0, 0.0, 0.0),
+                ), // 02
+                Pair(
+                    pi32,
+                    MutableVertex(0.0, -1.0, 0.0),
+                ), // 03
+                Pair(
+                    pi42,
+                    MutableVertex(1.0, 0.0, 0.0),
+                ), // 04
+            ),
+        ).forEachIndexed { i, (vertex, issues) ->
+            issues.forEachIndexed { j, (radians, expected) ->
+                val actual = rz(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    radians = radians,
+                )
+                val message = """
+                    $i/$j
+                    v: $vertex
+                    r: $radians
+                    e: $expected
+                    a: $actual
+                """.trimIndent()
+                assertEquals(
+                    expected = expected,
+                    actual = actual,
+                    delta = delta,
+                    exponent = exponent,
+                    message = message,
+                )
+            }
+        }
+    }
+
+    @Test
+    fun rxyzTest() {
+        val delta = 0.00000001
+        val exponent = 8
+        Assertions.Rotations.Issues.XYZ.forEachIndexed { i, (vertex, issues) ->
+            issues.forEachIndexed { j, (rotation, expected) ->
+                //
+//                val vx = rx(
+//                    x = vertex.x,
+//                    y = vertex.y,
+//                    z = vertex.z,
+//                    radians = rotation.aX,
+//                )
+//                val vy = ry(
+//                    x = vx.x,
+//                    y = vx.y,
+//                    z = vx.z,
+//                    radians = rotation.aY,
+//                )
+//                val actual = rz(
+//                    x = vy.x,
+//                    y = vy.y,
+//                    z = vy.z,
+//                    radians = rotation.aZ,
+//                )
+                //
+                val vz = rz(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    radians = rotation.aZ,
+                )
+                val vy = ry(
+                    x = vz.x,
+                    y = vz.y,
+                    z = vz.z,
+                    radians = rotation.aY,
+                )
+                val actual = rx(
+                    x = vy.x,
+                    y = vy.y,
+                    z = vy.z,
+                    radians = rotation.aX,
+                )
+                //
+                val message = """
+                    $i/$j
+                    v: $vertex
+                    r: $rotation
+                    e: $expected
+                    a: $actual
+                """.trimIndent()
+                assertEquals(
+                    expected = expected,
+                    actual = actual,
+                    delta = delta,
+                    exponent = exponent,
+                    message = message,
+                )
+            }
+        }
+    }
+
     @Test
     fun rotateTest() {
         val delta = 0.00000001
