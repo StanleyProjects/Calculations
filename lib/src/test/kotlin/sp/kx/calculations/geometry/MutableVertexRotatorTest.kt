@@ -11,8 +11,7 @@ internal class MutableVertexRotatorTest {
         val exponent = 8
         val rotator: Rotator<MutableVertex> = MutableVertexRotator.XYZ
         Assertions.Rotations.Issues.XYZ.forEachIndexed { i, (vertex, issues) ->
-            issues.forEachIndexed { j, issue ->
-                val (rotation, expected) = issue
+            issues.forEachIndexed { j, (rotation, expected) ->
                 val issuer = vertex.mut()
                 rotator.rotate(
                     issuer = issuer,
@@ -44,8 +43,7 @@ internal class MutableVertexRotatorTest {
         val exponent = 8
         val rotator: Rotator<MutableVertex> = MutableVertexRotator.ZYX
         Assertions.Rotations.Issues.ZYX.forEachIndexed { i, (vertex, issues) ->
-            issues.forEachIndexed { j, issue ->
-                val (rotation, expected) = issue
+            issues.forEachIndexed { j, (rotation, expected) ->
                 val issuer = vertex.mut()
                 rotator.rotate(
                     issuer = issuer,

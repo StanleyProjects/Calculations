@@ -183,43 +183,43 @@ internal class VertexRotationsTest {
         Assertions.Rotations.Issues.XYZ.forEachIndexed { i, (vertex, issues) ->
             issues.forEachIndexed { j, (rotation, expected) ->
                 //
-//                val vx = rx(
-//                    x = vertex.x,
-//                    y = vertex.y,
-//                    z = vertex.z,
-//                    radians = rotation.aX,
-//                )
-//                val vy = ry(
-//                    x = vx.x,
-//                    y = vx.y,
-//                    z = vx.z,
-//                    radians = rotation.aY,
-//                )
-//                val actual = rz(
-//                    x = vy.x,
-//                    y = vy.y,
-//                    z = vy.z,
-//                    radians = rotation.aZ,
-//                )
-                //
-                val vz = rz(
+                val vx = rx(
                     x = vertex.x,
                     y = vertex.y,
                     z = vertex.z,
-                    radians = rotation.aZ,
+                    radians = rotation.aX,
                 )
                 val vy = ry(
-                    x = vz.x,
-                    y = vz.y,
-                    z = vz.z,
+                    x = vx.x,
+                    y = vx.y,
+                    z = vx.z,
                     radians = rotation.aY,
                 )
-                val actual = rx(
+                val actual = rz(
                     x = vy.x,
                     y = vy.y,
                     z = vy.z,
-                    radians = rotation.aX,
+                    radians = rotation.aZ,
                 )
+                //
+//                val vz = rz(
+//                    x = vertex.x,
+//                    y = vertex.y,
+//                    z = vertex.z,
+//                    radians = rotation.aZ,
+//                )
+//                val vy = ry(
+//                    x = vz.x,
+//                    y = vz.y,
+//                    z = vz.z,
+//                    radians = rotation.aY,
+//                )
+//                val actual = rx(
+//                    x = vy.x,
+//                    y = vy.y,
+//                    z = vy.z,
+//                    radians = rotation.aX,
+//                )
                 //
                 val message = """
                     $i/$j
@@ -243,86 +243,8 @@ internal class VertexRotationsTest {
     fun rotateTest() {
         val delta = 0.00000001
         val exponent = 8
-        val pi12 = kotlin.math.PI / 2
-        val pi22 = kotlin.math.PI
-        val pi32 = kotlin.math.PI / 2 * 3
-        listOf(
-            MutableVertex(1.0, 0.0, 0.0) to listOf(
-                Pair(
-                    MutableRotation(0.0, 0.0, 0.0),
-                    MutableVertex(1.0, 0.0, 0.0),
-                ),
-                //
-                Pair(
-                    MutableRotation(0.0, 0.0, pi12),
-                    MutableVertex(0.0, 1.0, 0.0),
-                ),
-                Pair(
-                    MutableRotation(0.0, 0.0, pi22),
-                    MutableVertex(-1.0, 0.0, 0.0),
-                ),
-                Pair(
-                    MutableRotation(0.0, 0.0, pi32),
-                    MutableVertex(0.0, -1.0, 0.0),
-                ),
-                //
-                Pair(
-                    MutableRotation(0.0, aY = pi12, 0.0),
-                    MutableVertex(0.0, 0.0, z = 1.0),
-                ),
-                Pair(
-                    MutableRotation(0.0, aY = pi22, 0.0),
-                    MutableVertex(-1.0, 0.0, 0.0),
-                ),
-                Pair(
-                    MutableRotation(0.0, aY = pi32, 0.0),
-                    MutableVertex(0.0, 0.0, -1.0),
-                ),
-                //
-                Pair(
-                    MutableRotation(pi12, 0.0, pi12),
-                    MutableVertex(0.0, 0.0, 1.0),
-                ),
-                Pair(
-                    MutableRotation(pi12, pi12, 0.0),
-                    MutableVertex(0.0, -1.0, 0.0),
-                ),
-                Pair(
-                    MutableRotation(-pi12, pi12, 0.0),
-                    MutableVertex(0.0, 1.0, 0.0),
-                ),
-            ),
-            MutableVertex(0.0, 1.0, 0.0) to listOf(
-                Pair(
-                    MutableRotation(0.0, 0.0, 0.0),
-                    MutableVertex(0.0, 1.0, 0.0),
-                ),
-                //
-                Pair(
-                    MutableRotation(pi12, 0.0, 0.0),
-                    MutableVertex(0.0, 0.0, 1.0),
-                ),
-                Pair(
-                    MutableRotation(pi22, 0.0, 0.0),
-                    MutableVertex(0.0, -1.0, 0.0),
-                ),
-                Pair(
-                    MutableRotation(pi32, 0.0, 0.0),
-                    MutableVertex(0.0, 0.0, -1.0),
-                ),
-                //
-                Pair(
-                    MutableRotation(0.0, pi12, pi12),
-                    MutableVertex(0.0, 0.0, -1.0),
-                ),
-                Pair(
-                    MutableRotation(0.0, pi12, -pi12),
-                    MutableVertex(0.0, 0.0, 1.0),
-                ),
-            ),
-        ).forEachIndexed { i, (vertex, issues) ->
-            issues.forEachIndexed { j, issue ->
-                val (rotation, expected) = issue
+        Assertions.Rotations.Issues.ZYX.forEachIndexed { i, (vertex, issues) ->
+            issues.forEachIndexed { j, (rotation, expected) ->
                 val actual = rotate(
                     x = vertex.x,
                     y = vertex.y,
