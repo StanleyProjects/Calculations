@@ -8,9 +8,9 @@ object MutableVertexRotator {
     ) {
         val c = kotlin.math.cos(radians)
         val s = kotlin.math.sin(radians)
-        val m00 = c + (1 - c) * _x * _x;      val m01 = (1 - c) * _x * _y + s * _z; val m02 = (1 - c) * _x * _z + s * _y
-        val m10 = (1 - c) * _y * _x + s * _z; val m11 = c + (1 - c) * _y * _y;      val m12 = (1 - c) * _y * _z + s * _x
-        val m20 = (1 - c) * _z * _x + s * _y; val m21 = (1 - c) * _z * _y + s * _x; val m22 = c + (1 - c) * _z * _z
+        val m00 = c + (1 - c) * _x * _x;      val m01 = (1 - c) * _x * _y - s * _z; val m02 = (1 - c) * _x * _z + s * _y
+        val m10 = (1 - c) * _y * _x + s * _z; val m11 = c + (1 - c) * _y * _y;      val m12 = (1 - c) * _y * _z - s * _x
+        val m20 = (1 - c) * _z * _x - s * _y; val m21 = (1 - c) * _z * _y + s * _x; val m22 = c + (1 - c) * _z * _z
         issuer.set(
             x = m00 * issuer.x + m01 * issuer.y + m02 * issuer.z,
             y = m10 * issuer.x + m11 * issuer.y + m12 * issuer.z,
