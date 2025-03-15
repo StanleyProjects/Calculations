@@ -60,139 +60,73 @@ internal object Assertions {
 
             val Y: List<Pair<Vertex, List<Pair<Double, Vertex>>>> = listOf(
                 MutableVertex(1.0, 0.0, 0.0) to listOf(
-                    Pair(
-                        0.0,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 00
-                    Pair(
-                        _pi12,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 01
-                    Pair(
-                        _pi22,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 02
-                    Pair(
-                        _pi32,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 03
-                    Pair(
-                        _pi42,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 04
+                    0.0 to MutableVertex(1.0, 0.0, 0.0), // 00
+                    _pi14 to MutableVertex(_s1, 0.0, -_s1), // 01
+                    _pi12 to MutableVertex(0.0, 0.0, -1.0), // 02
+                    _pi34 to MutableVertex(-_s1, 0.0, -_s1), // 03
+                    _pi22 to MutableVertex(-1.0, 0.0, 0.0), // 04
+                    _pi54 to MutableVertex(-_s1, 0.0, _s1), // 05
+                    _pi32 to MutableVertex(0.0, 0.0, 1.0), // 06
+                    _pi74 to MutableVertex(_s1, 0.0, _s1), // 07
+                    _pi42 to MutableVertex(1.0, 0.0, 0.0), // 08
                 ),
                 MutableVertex(0.0, 1.0, 0.0) to listOf(
-                    Pair(
-                        0.0,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 00
-                    Pair(
-                        _pi12,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 01
-                    Pair(
-                        _pi22,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 02
-                    Pair(
-                        _pi32,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 03
-                    Pair(
-                        _pi42,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 04
+                    0.0 to MutableVertex(0.0, 1.0, 0.0), // 00
+                    _pi14 to MutableVertex(0.0, 1.0, 0.0), // 01
+                    _pi12 to MutableVertex(0.0, 1.0, 0.0), // 02
+                    _pi34 to MutableVertex(0.0, 1.0, 0.0), // 03
+                    _pi22 to MutableVertex(0.0, 1.0, 0.0), // 04
+                    _pi54 to MutableVertex(0.0, 1.0, 0.0), // 05
+                    _pi32 to MutableVertex(0.0, 1.0, 0.0), // 06
+                    _pi74 to MutableVertex(0.0, 1.0, 0.0), // 07
+                    _pi42 to MutableVertex(0.0, 1.0, 0.0), // 08
                 ),
                 MutableVertex(0.0, 0.0, 1.0) to listOf(
-                    Pair(
-                        0.0,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 00
-                    Pair(
-                        _pi12,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 01
-                    Pair(
-                        _pi22,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 02
-                    Pair(
-                        _pi32,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 03
-                    Pair(
-                        _pi42,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 04
+                    0.0 to MutableVertex(0.0, 0.0, 1.0), // 00
+                    _pi14 to MutableVertex(_s1, 0.0, _s1), // 01
+                    _pi12 to MutableVertex(1.0, 0.0, 0.0), // 02
+                    _pi34 to MutableVertex(_s1, 0.0, -_s1), // 03
+                    _pi22 to MutableVertex(0.0, 0.0, -1.0), // 04
+                    _pi54 to MutableVertex(-_s1, 0.0, -_s1), // 05
+                    _pi32 to MutableVertex(-1.0, 0.0, 0.0), // 06
+                    _pi74 to MutableVertex(-_s1, 0.0, _s1), // 07
+                    _pi42 to MutableVertex(0.0, 0.0, 1.0), // 08
                 ),
             )
 
             val Z: List<Pair<Vertex, List<Pair<Double, Vertex>>>> = listOf(
                 MutableVertex(1.0, 0.0, 0.0) to listOf(
-                    Pair(
-                        0.0,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 00
-                    Pair(
-                        _pi12,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 01
-                    Pair(
-                        _pi22,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 02
-                    Pair(
-                        _pi32,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 03
-                    Pair(
-                        _pi42,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 04
+                    0.0 to MutableVertex(0.0, 0.0, 0.0), // 00
+                    _pi14 to MutableVertex(0.0, 0.0, 0.0), // 01
+                    _pi12 to MutableVertex(0.0, 0.0, 0.0), // 02
+                    _pi34 to MutableVertex(0.0, 0.0, 0.0), // 03
+                    _pi22 to MutableVertex(0.0, 0.0, 0.0), // 04
+                    _pi54 to MutableVertex(0.0, 0.0, 0.0), // 05
+                    _pi32 to MutableVertex(0.0, 0.0, 0.0), // 06
+                    _pi74 to MutableVertex(0.0, 0.0, 0.0), // 07
+                    _pi42 to MutableVertex(0.0, 0.0, 0.0), // 08
                 ),
                 MutableVertex(0.0, 1.0, 0.0) to listOf(
-                    Pair(
-                        0.0,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 00
-                    Pair(
-                        _pi12,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 01
-                    Pair(
-                        _pi22,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 02
-                    Pair(
-                        _pi32,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 03
-                    Pair(
-                        _pi42,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 04
+                    0.0 to MutableVertex(0.0, 0.0, 0.0), // 00
+                    _pi14 to MutableVertex(0.0, 0.0, 0.0), // 01
+                    _pi12 to MutableVertex(0.0, 0.0, 0.0), // 02
+                    _pi34 to MutableVertex(0.0, 0.0, 0.0), // 03
+                    _pi22 to MutableVertex(0.0, 0.0, 0.0), // 04
+                    _pi54 to MutableVertex(0.0, 0.0, 0.0), // 05
+                    _pi32 to MutableVertex(0.0, 0.0, 0.0), // 06
+                    _pi74 to MutableVertex(0.0, 0.0, 0.0), // 07
+                    _pi42 to MutableVertex(0.0, 0.0, 0.0), // 08
                 ),
                 MutableVertex(0.0, 0.0, 1.0) to listOf(
-                    Pair(
-                        0.0,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 00
-                    Pair(
-                        _pi12,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 01
-                    Pair(
-                        _pi22,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 02
-                    Pair(
-                        _pi32,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 03
-                    Pair(
-                        _pi42,
-                        MutableVertex(0.0, 0.0, 0.0),
-                    ), // 04
+                    0.0 to MutableVertex(0.0, 0.0, 0.0), // 00
+                    _pi14 to MutableVertex(0.0, 0.0, 0.0), // 01
+                    _pi12 to MutableVertex(0.0, 0.0, 0.0), // 02
+                    _pi34 to MutableVertex(0.0, 0.0, 0.0), // 03
+                    _pi22 to MutableVertex(0.0, 0.0, 0.0), // 04
+                    _pi54 to MutableVertex(0.0, 0.0, 0.0), // 05
+                    _pi32 to MutableVertex(0.0, 0.0, 0.0), // 06
+                    _pi74 to MutableVertex(0.0, 0.0, 0.0), // 07
+                    _pi42 to MutableVertex(0.0, 0.0, 0.0), // 08
                 ),
             )
 

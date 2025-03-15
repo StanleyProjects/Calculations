@@ -53,7 +53,22 @@ fun rx(
     //
     return MutableVertex(
         x = x,
-        y = c * y - s * z,
-        z = s * y + c * z,
+        y = y * c - z * s,
+        z = y * s + z * c,
+    )
+}
+
+fun ry(
+    x: Double,
+    y: Double,
+    z: Double,
+    radians: Double,
+): Vertex {
+    val c = kotlin.math.cos(radians)
+    val s = kotlin.math.sin(radians)
+    return MutableVertex(
+        x = x * c + z * s,
+        y = y,
+        z = z * c - x * s,
     )
 }
