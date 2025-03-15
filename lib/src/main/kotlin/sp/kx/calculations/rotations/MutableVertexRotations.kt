@@ -25,3 +25,41 @@ fun MutableVertex.rz(radians: Double) {
     y = x * s + y * c
     x = _x
 }
+
+fun MutableVertex.rxyz(
+    aX: Double,
+    aY: Double,
+    aZ: Double,
+) {
+    var c = kotlin.math.cos(aX)
+    var s = kotlin.math.sin(aX)
+    val _y = y * c - z * s
+    val _z = y * s + z * c
+    c = kotlin.math.cos(aY)
+    s = kotlin.math.sin(aY)
+    val _x = _z * s + x * c
+    z = _z * c - x * s
+    c = kotlin.math.cos(aZ)
+    s = kotlin.math.sin(aZ)
+    x = _x * c - _y * s
+    y = _x * s + _y * c
+}
+
+fun MutableVertex.rzyx(
+    aX: Double,
+    aY: Double,
+    aZ: Double,
+) {
+    var c = kotlin.math.cos(aZ)
+    var s = kotlin.math.sin(aZ)
+    val _x = x * c - y * s
+    val _y = x * s + y * c
+    c = kotlin.math.cos(aY)
+    s = kotlin.math.sin(aY)
+    val _z = z * c - _x * s
+    x = z * s + _x * c
+    c = kotlin.math.cos(aX)
+    s = kotlin.math.sin(aX)
+    y = _y * c - _z * s
+    z = _y * s + _z * c
+}
