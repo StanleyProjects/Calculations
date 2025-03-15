@@ -2,6 +2,8 @@ package sp.kx.calculations.rotations
 
 import sp.kx.calculations.algebra.MutableMatrix
 
+// https://en.wikipedia.org/wiki/Rotation_matrix
+
 /*
 fun MutableMatrix.rx(radians: Double) {
     val c = kotlin.math.cos(radians)
