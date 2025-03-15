@@ -1,6 +1,7 @@
 package sp.kx.calculations.rotations
 
 import sp.kx.calculations.geometry.MutableVertex
+import sp.kx.calculations.geometry.Rotation
 import sp.kx.calculations.geometry.Vertex
 
 internal fun aa(
@@ -135,6 +136,52 @@ fun rzyx(
     _x = z * s + _x * c
     c = kotlin.math.cos(aX)
     s = kotlin.math.sin(aX)
+    return MutableVertex(
+        x = _x,
+        y = _y * c - _z * s,
+        z = _y * s + _z * c,
+    )
+}
+
+fun rxyz(
+    x: Double,
+    y: Double,
+    z: Double,
+    rotation: Rotation,
+): Vertex {
+    var c = kotlin.math.cos(rotation.aX)
+    var s = kotlin.math.sin(rotation.aX)
+    val _y = y * c - z * s
+    var _z = y * s + z * c
+    c = kotlin.math.cos(rotation.aY)
+    s = kotlin.math.sin(rotation.aY)
+    val _x = _z * s + x * c
+    _z = _z * c - x * s
+    c = kotlin.math.cos(rotation.aZ)
+    s = kotlin.math.sin(rotation.aZ)
+    return MutableVertex(
+        x = _x * c - _y * s,
+        y = _x * s + _y * c,
+        z = _z,
+    )
+}
+
+fun rzyx(
+    x: Double,
+    y: Double,
+    z: Double,
+    rotation: Rotation,
+): Vertex {
+    var c = kotlin.math.cos(rotation.aZ)
+    var s = kotlin.math.sin(rotation.aZ)
+    var _x = x * c - y * s
+    val _y = x * s + y * c
+    c = kotlin.math.cos(rotation.aY)
+    s = kotlin.math.sin(rotation.aY)
+    val _z = z * c - _x * s
+    _x = z * s + _x * c
+    c = kotlin.math.cos(rotation.aX)
+    s = kotlin.math.sin(rotation.aX)
     return MutableVertex(
         x = _x,
         y = _y * c - _z * s,

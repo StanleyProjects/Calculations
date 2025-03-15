@@ -2,6 +2,8 @@ package sp.kx.calculations.rotations
 
 import org.junit.jupiter.api.Test
 import sp.kx.calculations.Assertions
+import sp.kx.calculations.geometry.Rotation
+import sp.kx.calculations.geometry.Vertex
 
 internal class RotationsTest {
     @Test
@@ -78,6 +80,36 @@ internal class RotationsTest {
                     aX = rotation.aX,
                     aY = rotation.aY,
                     aZ = rotation.aZ,
+                )
+            },
+        )
+    }
+
+    @Test
+    fun rxyzRotationTest() {
+        Assertions.Rotations.Issues.test3(
+            issues = Assertions.Rotations.Issues.XYZ,
+            getActual = { vertex: Vertex, rotation: Rotation ->
+                rxyz(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    rotation = rotation,
+                )
+            },
+        )
+    }
+
+    @Test
+    fun rzyxRotationTest() {
+        Assertions.Rotations.Issues.test3(
+            issues = Assertions.Rotations.Issues.ZYX,
+            getActual = { vertex: Vertex, rotation: Rotation ->
+                rzyx(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    rotation = rotation,
                 )
             },
         )
