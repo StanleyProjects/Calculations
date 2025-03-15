@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test
 import sp.kx.calculations.Assertions
 import sp.kx.calculations.algebra.MutableMatrix
 import sp.kx.calculations.algebra.identity
+import sp.kx.calculations.geometry.Rotation
+import sp.kx.calculations.geometry.Vertex
 import sp.kx.calculations.operators.times
 
 internal class MutableMatrixRotationsTest {
@@ -75,6 +77,32 @@ internal class MutableMatrixRotationsTest {
                     aY = rotation.aY,
                     aZ = rotation.aZ,
                 )
+                vertex * matrix
+            },
+        )
+    }
+
+    @Test
+    fun rxyzRotationTest() {
+        Assertions.Rotations.Issues.test3(
+            issues = Assertions.Rotations.Issues.XYZ,
+            getActual = { vertex: Vertex, rotation: Rotation ->
+                val matrix = MutableMatrix()
+                matrix.identity()
+                matrix.rxyz(rotation = rotation)
+                vertex * matrix
+            },
+        )
+    }
+
+    @Test
+    fun rzyxRotationTest() {
+        Assertions.Rotations.Issues.test3(
+            issues = Assertions.Rotations.Issues.ZYX,
+            getActual = { vertex: Vertex, rotation: Rotation ->
+                val matrix = MutableMatrix()
+                matrix.identity()
+                matrix.rzyx(rotation = rotation)
                 vertex * matrix
             },
         )
