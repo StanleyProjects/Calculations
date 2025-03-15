@@ -10,10 +10,15 @@ import sp.kx.calculations.geometry.Rotation
 import sp.kx.calculations.geometry.Vertex
 
 internal object Assertions {
-    private const val _pi12 = kotlin.math.PI / 2
-    private const val _pi22 = kotlin.math.PI
-    private const val _pi32 = kotlin.math.PI + _pi12
-    private const val _pi42 = kotlin.math.PI + kotlin.math.PI
+    private const val _pi14 = kotlin.math.PI / 4
+    private const val _pi34 = _pi14 * 3
+    private const val _pi54 = _pi14 * 5
+    private const val _pi74 = _pi14 * 7
+    private const val _pi12 = _pi14 * 2
+    private const val _pi22 = _pi14 * 4
+    private const val _pi32 = _pi14 * 6
+    private const val _pi42 = _pi14 * 8
+    private val _s1 = kotlin.math.sqrt(0.5)
 
     object Rotations {
         object Issues {
@@ -41,26 +46,15 @@ internal object Assertions {
                     ), // 04
                 ),
                 MutableVertex(0.0, 1.0, 0.0) to listOf(
-                    Pair(
-                        0.0,
-                        MutableVertex(0.0, 1.0, 0.0),
-                    ), // 00
-                    Pair(
-                        _pi12,
-                        MutableVertex(0.0, 0.0, 1.0),
-                    ), // 01
-                    Pair(
-                        _pi22,
-                        MutableVertex(0.0, -1.0, 0.0),
-                    ), // 02
-                    Pair(
-                        _pi32,
-                        MutableVertex(0.0, 0.0, -1.0),
-                    ), // 03
-                    Pair(
-                        _pi42,
-                        MutableVertex(0.0, 1.0, 0.0),
-                    ), // 04
+                    0.0 to MutableVertex(0.0, 1.0, 0.0),
+                    _pi14 to MutableVertex(0.0, _s1, _s1),
+                    _pi12 to MutableVertex(0.0, 0.0, 1.0),
+                    _pi34 to MutableVertex(0.0, -_s1, _s1),
+                    _pi22 to MutableVertex(0.0, -1.0, 0.0),
+                    _pi54 to MutableVertex(0.0, -_s1, -_s1),
+                    _pi32 to MutableVertex(0.0, 0.0, -1.0),
+                    _pi74 to MutableVertex(0.0, _s1, -_s1),
+                    _pi42 to MutableVertex(0.0, 1.0, 0.0),
                 ),
                 MutableVertex(0.0, 0.0, 1.0) to listOf(
                     Pair(
