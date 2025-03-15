@@ -12,10 +12,218 @@ import sp.kx.calculations.geometry.Vertex
 internal object Assertions {
     private const val _pi12 = kotlin.math.PI / 2
     private const val _pi22 = kotlin.math.PI
-    private const val _pi32 = _pi22 + _pi12
+    private const val _pi32 = kotlin.math.PI + _pi12
+    private const val _pi42 = kotlin.math.PI + kotlin.math.PI
 
     object Rotations {
         object Issues {
+            val X: List<Pair<Vertex, List<Pair<Double, Vertex>>>> = listOf(
+                MutableVertex(1.0, 0.0, 0.0) to listOf(
+                    Pair(
+                        0.0,
+                        MutableVertex(1.0, 0.0, 0.0),
+                    ), // 00
+                    Pair(
+                        _pi12,
+                        MutableVertex(1.0, 0.0, 0.0),
+                    ), // 01
+                    Pair(
+                        _pi22,
+                        MutableVertex(1.0, 0.0, 0.0),
+                    ), // 02
+                    Pair(
+                        _pi32,
+                        MutableVertex(1.0, 0.0, 0.0),
+                    ), // 03
+                    Pair(
+                        _pi42,
+                        MutableVertex(1.0, 0.0, 0.0),
+                    ), // 04
+                ),
+                MutableVertex(0.0, 1.0, 0.0) to listOf(
+                    Pair(
+                        0.0,
+                        MutableVertex(0.0, 1.0, 0.0),
+                    ), // 00
+                    Pair(
+                        _pi12,
+                        MutableVertex(0.0, 0.0, 1.0),
+                    ), // 01
+                    Pair(
+                        _pi22,
+                        MutableVertex(0.0, -1.0, 0.0),
+                    ), // 02
+                    Pair(
+                        _pi32,
+                        MutableVertex(0.0, 0.0, -1.0),
+                    ), // 03
+                    Pair(
+                        _pi42,
+                        MutableVertex(0.0, 1.0, 0.0),
+                    ), // 04
+                ),
+                MutableVertex(0.0, 0.0, 1.0) to listOf(
+                    Pair(
+                        0.0,
+                        MutableVertex(0.0, 0.0, 1.0),
+                    ), // 00
+                    Pair(
+                        _pi12,
+                        MutableVertex(0.0, -1.0, 0.0),
+                    ), // 01
+                    Pair(
+                        _pi22,
+                        MutableVertex(0.0, 0.0, -1.0),
+                    ), // 02
+                    Pair(
+                        _pi32,
+                        MutableVertex(0.0, 1.0, 0.0),
+                    ), // 03
+                    Pair(
+                        _pi42,
+                        MutableVertex(0.0, 0.0, 1.0),
+                    ), // 04
+                ),
+            )
+
+            val Y: List<Pair<Vertex, List<Pair<Double, Vertex>>>> = listOf(
+                MutableVertex(1.0, 0.0, 0.0) to listOf(
+                    Pair(
+                        0.0,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 00
+                    Pair(
+                        _pi12,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 01
+                    Pair(
+                        _pi22,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 02
+                    Pair(
+                        _pi32,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 03
+                    Pair(
+                        _pi42,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 04
+                ),
+                MutableVertex(0.0, 1.0, 0.0) to listOf(
+                    Pair(
+                        0.0,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 00
+                    Pair(
+                        _pi12,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 01
+                    Pair(
+                        _pi22,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 02
+                    Pair(
+                        _pi32,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 03
+                    Pair(
+                        _pi42,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 04
+                ),
+                MutableVertex(0.0, 0.0, 1.0) to listOf(
+                    Pair(
+                        0.0,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 00
+                    Pair(
+                        _pi12,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 01
+                    Pair(
+                        _pi22,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 02
+                    Pair(
+                        _pi32,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 03
+                    Pair(
+                        _pi42,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 04
+                ),
+            )
+
+            val Z: List<Pair<Vertex, List<Pair<Double, Vertex>>>> = listOf(
+                MutableVertex(1.0, 0.0, 0.0) to listOf(
+                    Pair(
+                        0.0,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 00
+                    Pair(
+                        _pi12,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 01
+                    Pair(
+                        _pi22,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 02
+                    Pair(
+                        _pi32,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 03
+                    Pair(
+                        _pi42,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 04
+                ),
+                MutableVertex(0.0, 1.0, 0.0) to listOf(
+                    Pair(
+                        0.0,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 00
+                    Pair(
+                        _pi12,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 01
+                    Pair(
+                        _pi22,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 02
+                    Pair(
+                        _pi32,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 03
+                    Pair(
+                        _pi42,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 04
+                ),
+                MutableVertex(0.0, 0.0, 1.0) to listOf(
+                    Pair(
+                        0.0,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 00
+                    Pair(
+                        _pi12,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 01
+                    Pair(
+                        _pi22,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 02
+                    Pair(
+                        _pi32,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 03
+                    Pair(
+                        _pi42,
+                        MutableVertex(0.0, 0.0, 0.0),
+                    ), // 04
+                ),
+            )
+
             val XYZ: List<Pair<Vertex, List<Pair<Rotation, Vertex>>>> = listOf(
                 MutableVertex(1.0, 0.0, 0.0) to listOf(
                     Pair(
