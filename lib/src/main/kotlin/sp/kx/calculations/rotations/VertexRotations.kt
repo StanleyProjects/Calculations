@@ -4,46 +4,56 @@ import sp.kx.calculations.geometry.MutableVertex
 import sp.kx.calculations.geometry.Vertex
 import sp.kx.calculations.geometry.copy
 
-fun Vertex.rx(radians: Double): Vertex {
+fun rx(
+    vertex: Vertex,
+    radians: Double,
+): Vertex {
     val c = kotlin.math.cos(radians)
     val s = kotlin.math.sin(radians)
-    return copy(
-        y = y * c - z * s,
-        z = y * s + z * c,
+    return vertex.copy(
+        y = vertex.y * c - vertex.z * s,
+        z = vertex.y * s + vertex.z * c,
     )
 }
 
-fun Vertex.ry(radians: Double): Vertex {
+fun ry(
+    vertex: Vertex,
+    radians: Double,
+): Vertex {
     val c = kotlin.math.cos(radians)
     val s = kotlin.math.sin(radians)
-    return copy(
-        x = z * s + x * c,
-        z = z * c - x * s,
+    return vertex.copy(
+        x = vertex.z * s + vertex.x * c,
+        z = vertex.z * c - vertex.x * s,
     )
 }
 
-fun Vertex.rz(radians: Double): Vertex {
+fun rz(
+    vertex: Vertex,
+    radians: Double,
+): Vertex {
     val c = kotlin.math.cos(radians)
     val s = kotlin.math.sin(radians)
-    return copy(
-        x = x * c - y * s,
-        y = x * s + y * c,
+    return vertex.copy(
+        x = vertex.x * c - vertex.y * s,
+        y = vertex.x * s + vertex.y * c,
     )
 }
 
-fun Vertex.rxyz(
+fun rxyz(
+    vertex: Vertex,
     aX: Double,
     aY: Double,
     aZ: Double,
 ): Vertex {
     var c = kotlin.math.cos(aX)
     var s = kotlin.math.sin(aX)
-    val _y = y * c - z * s
-    var _z = y * s + z * c
+    val _y = vertex.y * c - vertex.z * s
+    var _z = vertex.y * s + vertex.z * c
     c = kotlin.math.cos(aY)
     s = kotlin.math.sin(aY)
-    val _x = _z * s + x * c
-    _z = _z * c - x * s
+    val _x = _z * s + vertex.x * c
+    _z = _z * c - vertex.x * s
     c = kotlin.math.cos(aZ)
     s = kotlin.math.sin(aZ)
     return MutableVertex(
@@ -53,19 +63,20 @@ fun Vertex.rxyz(
     )
 }
 
-fun Vertex.rzyx(
+fun rzyx(
+    vertex: Vertex,
     aX: Double,
     aY: Double,
     aZ: Double,
 ): Vertex {
     var c = kotlin.math.cos(aZ)
     var s = kotlin.math.sin(aZ)
-    var _x = x * c - y * s
-    val _y = x * s + y * c
+    var _x = vertex.x * c - vertex.y * s
+    val _y = vertex.x * s + vertex.y * c
     c = kotlin.math.cos(aY)
     s = kotlin.math.sin(aY)
-    val _z = z * c - _x * s
-    _x = z * s + _x * c
+    val _z = vertex.z * c - _x * s
+    _x = vertex.z * s + _x * c
     c = kotlin.math.cos(aX)
     s = kotlin.math.sin(aX)
     return MutableVertex(

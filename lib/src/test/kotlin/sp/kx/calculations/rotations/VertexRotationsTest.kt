@@ -2,14 +2,16 @@ package sp.kx.calculations.rotations
 
 import org.junit.jupiter.api.Test
 import sp.kx.calculations.Assertions
+import sp.kx.calculations.geometry.Rotation
+import sp.kx.calculations.geometry.Vertex
 
 internal class VertexRotationsTest {
     @Test
     fun rxTest() {
         Assertions.Rotations.Issues.test1(
             issues = Assertions.Rotations.Issues.X,
-            getActual = { vertex, radians ->
-                vertex.rx(radians = radians)
+            getActual = { vertex: Vertex, radians: Double ->
+                rx(vertex = vertex, radians = radians)
             },
         )
     }
@@ -18,8 +20,8 @@ internal class VertexRotationsTest {
     fun ryTest() {
         Assertions.Rotations.Issues.test1(
             issues = Assertions.Rotations.Issues.Y,
-            getActual = { vertex, radians ->
-                vertex.ry(radians = radians)
+            getActual = { vertex: Vertex, radians: Double ->
+                ry(vertex = vertex, radians = radians)
             },
         )
     }
@@ -28,8 +30,8 @@ internal class VertexRotationsTest {
     fun rzTest() {
         Assertions.Rotations.Issues.test1(
             issues = Assertions.Rotations.Issues.Z,
-            getActual = { vertex, radians ->
-                vertex.rz(radians = radians)
+            getActual = { vertex: Vertex, radians: Double ->
+                rz(vertex = vertex, radians = radians)
             },
         )
     }
@@ -38,8 +40,9 @@ internal class VertexRotationsTest {
     fun rxyzTest() {
         Assertions.Rotations.Issues.test3(
             issues = Assertions.Rotations.Issues.XYZ,
-            getActual = { vertex, rotation ->
-                vertex.rxyz(
+            getActual = { vertex: Vertex, rotation: Rotation ->
+                rxyz(
+                    vertex = vertex,
                     aX = rotation.aX,
                     aY = rotation.aY,
                     aZ = rotation.aZ,
@@ -52,8 +55,9 @@ internal class VertexRotationsTest {
     fun rzyxTest() {
         Assertions.Rotations.Issues.test3(
             issues = Assertions.Rotations.Issues.ZYX,
-            getActual = { vertex, rotation ->
-                vertex.rzyx(
+            getActual = { vertex: Vertex, rotation: Rotation ->
+                rzyx(
+                    vertex = vertex,
                     aX = rotation.aX,
                     aY = rotation.aY,
                     aZ = rotation.aZ,
