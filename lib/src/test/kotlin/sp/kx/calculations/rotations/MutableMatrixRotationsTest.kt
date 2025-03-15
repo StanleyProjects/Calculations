@@ -45,4 +45,38 @@ internal class MutableMatrixRotationsTest {
             },
         )
     }
+
+    @Test
+    fun rxyzTest() {
+        Assertions.Rotations.Issues.test3(
+            issues = Assertions.Rotations.Issues.XYZ,
+            getActual = { vertex, rotation ->
+                val matrix = MutableMatrix()
+                matrix.identity()
+                matrix.rxyz(
+                    aX = rotation.aX,
+                    aY = rotation.aY,
+                    aZ = rotation.aZ,
+                )
+                vertex * matrix
+            },
+        )
+    }
+
+    @Test
+    fun rzyxTest() {
+        Assertions.Rotations.Issues.test3(
+            issues = Assertions.Rotations.Issues.ZYX,
+            getActual = { vertex, rotation ->
+                val matrix = MutableMatrix()
+                matrix.identity()
+                matrix.rzyx(
+                    aX = rotation.aX,
+                    aY = rotation.aY,
+                    aZ = rotation.aZ,
+                )
+                vertex * matrix
+            },
+        )
+    }
 }
