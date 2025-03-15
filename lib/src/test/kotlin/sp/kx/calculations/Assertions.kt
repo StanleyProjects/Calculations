@@ -339,6 +339,54 @@ internal object Assertions {
                     ), // 07
                 )
             )
+
+            fun test1(issues: List<Pair<Vertex, List<Pair<Double, Vertex>>>>, getActual: (Vertex, Double) -> Vertex) {
+                val delta = 0.00000001
+                val exponent = 8
+                issues.forEachIndexed { i, (vertex, env) ->
+                    env.forEachIndexed { j, (radians: Double, expected) ->
+                        val actual = getActual(vertex, radians)
+                        val message = """
+                            $i/$j
+                            v: $vertex
+                            r: $radians
+                            e: $expected
+                            a: $actual
+                        """.trimIndent()
+                        assertEquals(
+                            expected = expected,
+                            actual = actual,
+                            delta = delta,
+                            exponent = exponent,
+                            message = message,
+                        )
+                    }
+                }
+            }
+
+            fun test3(issues: List<Pair<Vertex, List<Pair<Rotation, Vertex>>>>, getActual: (Vertex, Rotation) -> Vertex) {
+                val delta = 0.00000001
+                val exponent = 8
+                issues.forEachIndexed { i, (vertex, env) ->
+                    env.forEachIndexed { j, (rotation, expected) ->
+                        val actual = getActual(vertex, rotation)
+                        val message = """
+                            $i/$j
+                            v: $vertex
+                            r: $rotation
+                            e: $expected
+                            a: $actual
+                        """.trimIndent()
+                        assertEquals(
+                            expected = expected,
+                            actual = actual,
+                            delta = delta,
+                            exponent = exponent,
+                            message = message,
+                        )
+                    }
+                }
+            }
         }
     }
 

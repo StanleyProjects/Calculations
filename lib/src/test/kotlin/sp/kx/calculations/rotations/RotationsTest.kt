@@ -2,106 +2,59 @@ package sp.kx.calculations.rotations
 
 import org.junit.jupiter.api.Test
 import sp.kx.calculations.Assertions
-import sp.kx.calculations.Assertions.assertEquals
 
 internal class RotationsTest {
     @Test
     fun rxTest() {
-        val delta = 0.00000001
-        val exponent = 8
-        Assertions.Rotations.Issues.X.forEachIndexed { i, (vertex, issues) ->
-            issues.forEachIndexed { j, (radians: Double, expected) ->
-                val actual = rx(
+        Assertions.Rotations.Issues.test1(
+            issues = Assertions.Rotations.Issues.X,
+            getActual = { vertex, radians ->
+                rx(
                     x = vertex.x,
                     y = vertex.y,
                     z = vertex.z,
                     radians = radians,
                 )
-                val message = """
-                    $i/$j
-                    v: $vertex
-                    r: $radians
-                    e: $expected
-                    a: $actual
-                """.trimIndent()
-                assertEquals(
-                    expected = expected,
-                    actual = actual,
-                    delta = delta,
-                    exponent = exponent,
-                    message = message,
-                )
-            }
-        }
+            },
+        )
     }
 
     @Test
     fun ryTest() {
-        val delta = 0.00000001
-        val exponent = 8
-        Assertions.Rotations.Issues.Y.forEachIndexed { i, (vertex, issues) ->
-            issues.forEachIndexed { j, (radians: Double, expected) ->
-                val actual = ry(
+        Assertions.Rotations.Issues.test1(
+            issues = Assertions.Rotations.Issues.Y,
+            getActual = { vertex, radians ->
+                ry(
                     x = vertex.x,
                     y = vertex.y,
                     z = vertex.z,
                     radians = radians,
                 )
-                val message = """
-                    $i/$j
-                    v: $vertex
-                    r: $radians
-                    e: $expected
-                    a: $actual
-                """.trimIndent()
-                assertEquals(
-                    expected = expected,
-                    actual = actual,
-                    delta = delta,
-                    exponent = exponent,
-                    message = message,
-                )
-            }
-        }
+            },
+        )
     }
 
     @Test
     fun rzTest() {
-        val delta = 0.00000001
-        val exponent = 8
-        Assertions.Rotations.Issues.Z.forEachIndexed { i, (vertex, issues) ->
-            issues.forEachIndexed { j, (radians: Double, expected) ->
-                val actual = rz(
+        Assertions.Rotations.Issues.test1(
+            issues = Assertions.Rotations.Issues.Z,
+            getActual = { vertex, radians ->
+                rz(
                     x = vertex.x,
                     y = vertex.y,
                     z = vertex.z,
                     radians = radians,
                 )
-                val message = """
-                    $i/$j
-                    v: $vertex
-                    r: $radians
-                    e: $expected
-                    a: $actual
-                """.trimIndent()
-                assertEquals(
-                    expected = expected,
-                    actual = actual,
-                    delta = delta,
-                    exponent = exponent,
-                    message = message,
-                )
-            }
-        }
+            },
+        )
     }
 
     @Test
     fun rxyzTest() {
-        val delta = 0.00000001
-        val exponent = 8
-        Assertions.Rotations.Issues.XYZ.forEachIndexed { i, (vertex, issues) ->
-            issues.forEachIndexed { j, (rotation, expected) ->
-                val actual = rxyz(
+        Assertions.Rotations.Issues.test3(
+            issues = Assertions.Rotations.Issues.XYZ,
+            getActual = { vertex, rotation ->
+                rxyz(
                     x = vertex.x,
                     y = vertex.y,
                     z = vertex.z,
@@ -109,31 +62,16 @@ internal class RotationsTest {
                     aY = rotation.aY,
                     aZ = rotation.aZ,
                 )
-                val message = """
-                    $i/$j
-                    v: $vertex
-                    r: $rotation
-                    e: $expected
-                    a: $actual
-                """.trimIndent()
-                assertEquals(
-                    expected = expected,
-                    actual = actual,
-                    delta = delta,
-                    exponent = exponent,
-                    message = message,
-                )
-            }
-        }
+            },
+        )
     }
 
     @Test
     fun rzyxTest() {
-        val delta = 0.00000001
-        val exponent = 8
-        Assertions.Rotations.Issues.ZYX.forEachIndexed { i, (vertex, issues) ->
-            issues.forEachIndexed { j, (rotation, expected) ->
-                val actual = rzyx(
+        Assertions.Rotations.Issues.test3(
+            issues = Assertions.Rotations.Issues.ZYX,
+            getActual = { vertex, rotation ->
+                rzyx(
                     x = vertex.x,
                     y = vertex.y,
                     z = vertex.z,
@@ -141,21 +79,7 @@ internal class RotationsTest {
                     aY = rotation.aY,
                     aZ = rotation.aZ,
                 )
-                val message = """
-                    $i/$j
-                    v: $vertex
-                    r: $rotation
-                    e: $expected
-                    a: $actual
-                """.trimIndent()
-                assertEquals(
-                    expected = expected,
-                    actual = actual,
-                    delta = delta,
-                    exponent = exponent,
-                    message = message,
-                )
-            }
-        }
+            },
+        )
     }
 }
