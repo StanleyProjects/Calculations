@@ -64,4 +64,34 @@ internal class RotationsTest {
             }
         }
     }
+
+    @Test
+    fun rzTest() {
+        val delta = 0.00000001
+        val exponent = 8
+        Assertions.Rotations.Issues.Z.forEachIndexed { i, (vertex, issues) ->
+            issues.forEachIndexed { j, (radians: Double, expected) ->
+                val actual = rz(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    radians = radians,
+                )
+                val message = """
+                    $i/$j
+                    v: $vertex
+                    r: $radians
+                    e: $expected
+                    a: $actual
+                """.trimIndent()
+                assertEquals(
+                    expected = expected,
+                    actual = actual,
+                    delta = delta,
+                    exponent = exponent,
+                    message = message,
+                )
+            }
+        }
+    }
 }
