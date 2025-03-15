@@ -94,4 +94,68 @@ internal class RotationsTest {
             }
         }
     }
+
+    @Test
+    fun rxyzTest() {
+        val delta = 0.00000001
+        val exponent = 8
+        Assertions.Rotations.Issues.XYZ.forEachIndexed { i, (vertex, issues) ->
+            issues.forEachIndexed { j, (rotation, expected) ->
+                val actual = rxyz(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    aX = rotation.aX,
+                    aY = rotation.aY,
+                    aZ = rotation.aZ,
+                )
+                val message = """
+                    $i/$j
+                    v: $vertex
+                    r: $rotation
+                    e: $expected
+                    a: $actual
+                """.trimIndent()
+                assertEquals(
+                    expected = expected,
+                    actual = actual,
+                    delta = delta,
+                    exponent = exponent,
+                    message = message,
+                )
+            }
+        }
+    }
+
+    @Test
+    fun rzyxTest() {
+        val delta = 0.00000001
+        val exponent = 8
+        Assertions.Rotations.Issues.ZYX.forEachIndexed { i, (vertex, issues) ->
+            issues.forEachIndexed { j, (rotation, expected) ->
+                val actual = rzyx(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    aX = rotation.aX,
+                    aY = rotation.aY,
+                    aZ = rotation.aZ,
+                )
+                val message = """
+                    $i/$j
+                    v: $vertex
+                    r: $rotation
+                    e: $expected
+                    a: $actual
+                """.trimIndent()
+                assertEquals(
+                    expected = expected,
+                    actual = actual,
+                    delta = delta,
+                    exponent = exponent,
+                    message = message,
+                )
+            }
+        }
+    }
 }
