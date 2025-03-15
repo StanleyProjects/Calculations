@@ -65,4 +65,30 @@ internal class VertexRotationsTest {
             },
         )
     }
+
+    @Test
+    fun rxyzRotationTest() {
+        Assertions.Rotations.Issues.test3(
+            issues = Assertions.Rotations.Issues.XYZ,
+            getActual = { vertex: Vertex, rotation: Rotation ->
+                rxyz(
+                    vertex = vertex,
+                    rotation = rotation,
+                )
+            },
+        )
+    }
+
+    @Test
+    fun rzyxRotationTest() {
+        Assertions.Rotations.Issues.test3(
+            issues = Assertions.Rotations.Issues.ZYX,
+            getActual = { vertex: Vertex, rotation: Rotation ->
+                rzyx(
+                    vertex = vertex,
+                    rotation = rotation,
+                )
+            },
+        )
+    }
 }
