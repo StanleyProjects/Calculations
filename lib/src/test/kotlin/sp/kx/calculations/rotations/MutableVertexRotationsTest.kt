@@ -2,6 +2,8 @@ package sp.kx.calculations.rotations
 
 import org.junit.jupiter.api.Test
 import sp.kx.calculations.Assertions
+import sp.kx.calculations.geometry.Rotation
+import sp.kx.calculations.geometry.Vertex
 import sp.kx.calculations.geometry.mut
 
 internal class MutableVertexRotationsTest {
@@ -68,6 +70,30 @@ internal class MutableVertexRotationsTest {
                     aY = rotation.aY,
                     aZ = rotation.aZ,
                 )
+                actual
+            },
+        )
+    }
+
+    @Test
+    fun rxyzRotationTest() {
+        Assertions.Rotations.Issues.test3(
+            issues = Assertions.Rotations.Issues.XYZ,
+            getActual = { vertex: Vertex, rotation: Rotation ->
+                val actual = vertex.mut()
+                actual.rxyz(rotation = rotation)
+                actual
+            },
+        )
+    }
+
+    @Test
+    fun rzyxRotationTest() {
+        Assertions.Rotations.Issues.test3(
+            issues = Assertions.Rotations.Issues.ZYX,
+            getActual = { vertex: Vertex, rotation: Rotation ->
+                val actual = vertex.mut()
+                actual.rzyx(rotation = rotation)
                 actual
             },
         )
