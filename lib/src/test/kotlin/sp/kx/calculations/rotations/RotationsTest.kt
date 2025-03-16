@@ -114,4 +114,55 @@ internal class RotationsTest {
             },
         )
     }
+
+    @Test
+    fun rxAboutTest() {
+        Assertions.Rotations.Issues.test1About(
+            issues = Assertions.Rotations.Issues.XAbout,
+            getActual = { vertex, about, radians ->
+                rx(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    radians = radians,
+                    rY = about.y,
+                    rZ = about.z,
+                )
+            },
+        )
+    }
+
+    @Test
+    fun ryAboutTest() {
+        Assertions.Rotations.Issues.test1About(
+            issues = Assertions.Rotations.Issues.YAbout,
+            getActual = { vertex, about, radians ->
+                ry(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    radians = radians,
+                    rX = about.x,
+                    rZ = about.z,
+                )
+            },
+        )
+    }
+
+    @Test
+    fun rzAboutTest() {
+        Assertions.Rotations.Issues.test1About(
+            issues = Assertions.Rotations.Issues.ZAbout,
+            getActual = { vertex, about, radians ->
+                rz(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    radians = radians,
+                    rX = about.x,
+                    rY = about.y,
+                )
+            },
+        )
+    }
 }

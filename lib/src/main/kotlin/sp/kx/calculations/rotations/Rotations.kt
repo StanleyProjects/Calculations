@@ -188,3 +188,74 @@ fun rzyx(
         z = _y * s + _z * c,
     )
 }
+
+fun rx(
+    x: Double,
+    y: Double,
+    z: Double,
+    radians: Double,
+    rY: Double,
+    rZ: Double,
+): Vertex {
+    val c = kotlin.math.cos(radians)
+    val s = kotlin.math.sin(radians)
+    val _y = y - rY
+    val _z = z - rZ
+    return MutableVertex(
+        x = x,
+        y = _y * c - _z * s + rY,
+        z = _y * s + _z * c + rZ,
+    )
+}
+
+fun ry(
+    x: Double,
+    y: Double,
+    z: Double,
+    radians: Double,
+    rX: Double,
+    rZ: Double,
+): Vertex {
+    val c = kotlin.math.cos(radians)
+    val s = kotlin.math.sin(radians)
+    val _x = x - rX
+    val _z = z - rZ
+    return MutableVertex(
+        x = _z * s + _x * c + rX,
+        y = y,
+        z = _z * c - _x * s + rZ,
+    )
+}
+
+fun rz(
+    x: Double,
+    y: Double,
+    z: Double,
+    radians: Double,
+    rX: Double,
+    rY: Double,
+): Vertex {
+    val c = kotlin.math.cos(radians)
+    val s = kotlin.math.sin(radians)
+    val _x = x - rX
+    val _y = y - rY
+    return MutableVertex(
+        x = _x * c - _y * s + rX,
+        y = _x * s + _y * c + rY,
+        z = z,
+    )
+}
+
+fun rxyz(
+    x: Double,
+    y: Double,
+    z: Double,
+    aX: Double,
+    aY: Double,
+    aZ: Double,
+    rX: Double,
+    rY: Double,
+    rZ: Double,
+): Vertex {
+    TODO("rxyz")
+}

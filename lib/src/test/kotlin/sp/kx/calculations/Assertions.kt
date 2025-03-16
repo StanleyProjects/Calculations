@@ -19,9 +19,16 @@ internal object Assertions {
     private const val _pi32 = _pi14 * 6
     private const val _pi42 = _pi14 * 8
     private val _s1 = kotlin.math.sqrt(0.5)
+    private val _s2 = kotlin.math.sqrt(2.0)
 
     object Rotations {
         object Issues {
+            class About(
+                val vertex: Vertex,
+                val about: Vertex,
+                val list: List<Pair<Double, Vertex>>,
+            )
+
             val X: List<Pair<Vertex, List<Pair<Double, Vertex>>>> = listOf(
                 MutableVertex(1.0, 0.0, 0.0) to listOf(
                     0.0 to MutableVertex(1.0, 0.0, 0.0), // 00
@@ -364,7 +371,10 @@ internal object Assertions {
                 }
             }
 
-            fun test3(issues: List<Pair<Vertex, List<Pair<Rotation, Vertex>>>>, getActual: (Vertex, Rotation) -> Vertex) {
+            fun test3(
+                issues: List<Pair<Vertex, List<Pair<Rotation, Vertex>>>>,
+                getActual: (Vertex, Rotation) -> Vertex,
+            ) {
                 val delta = 0.00000001
                 val exponent = 8
                 issues.forEachIndexed { i, (vertex, env) ->
@@ -374,6 +384,178 @@ internal object Assertions {
                             $i/$j
                             v: $vertex
                             r: $rotation
+                            e: $expected
+                            a: $actual
+                        """.trimIndent()
+                        assertEquals(
+                            expected = expected,
+                            actual = actual,
+                            delta = delta,
+                            exponent = exponent,
+                            message = message,
+                        )
+                    }
+                }
+            }
+
+            val XAbout: List<About> = listOf(
+                About(
+                    vertex = MutableVertex(1.0, 0.0, 0.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        0.0 to MutableVertex(1.0, 0.0, 0.0), // 00
+                        _pi14 to MutableVertex(1.0, 1.0, 1.0 - _s2), // 01
+                        _pi12 to MutableVertex(1.0, 2.0, 0.0), // 02
+                        _pi34 to MutableVertex(1.0, 1.0 + _s2, 1.0), // 03
+                        _pi22 to MutableVertex(1.0, 2.0, 2.0), // 04
+                        _pi54 to MutableVertex(1.0, 1.0, 1.0 + _s2), // 05
+                        _pi32 to MutableVertex(1.0, 0.0, 2.0), // 06
+                        _pi74 to MutableVertex(1.0, 1.0 - _s2, 1.0), // 07
+                        _pi42 to MutableVertex(1.0, 0.0, 0.0), // 08
+                    ),
+                ),
+                About(
+                    vertex = MutableVertex(0.0, 1.0, 0.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        0.0 to MutableVertex(0.0, 1.0, 0.0), // 00
+                        _pi14 to MutableVertex(0.0, 1.0 + _s1, 1.0 - _s1), // 01
+                        _pi12 to MutableVertex(0.0, 2.0, 1.0), // 02
+                        _pi34 to MutableVertex(0.0, 1.0 + _s1, 1.0 + _s1), // 03
+                        _pi22 to MutableVertex(0.0, 1.0, 2.0), // 04
+                        _pi54 to MutableVertex(0.0, 1.0 - _s1, 1.0 + _s1), // 05
+                        _pi32 to MutableVertex(0.0, 0.0, 1.0), // 06
+                        _pi74 to MutableVertex(0.0, 1.0 - _s1, 1.0 - _s1), // 07
+                        _pi42 to MutableVertex(0.0, 1.0, 0.0), // 08
+                    ),
+                ),
+                About(
+                    vertex = MutableVertex(0.0, 0.0, 1.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        0.0 to MutableVertex(0.0, 0.0, 1.0), // 00
+                        _pi14 to MutableVertex(0.0, 1.0 - _s1, 1.0 - _s1), // 01
+                        _pi12 to MutableVertex(0.0, 1.0, 0.0), // 02
+                        _pi34 to MutableVertex(0.0, 1.0 + _s1, 1.0 - _s1), // 03
+                        _pi22 to MutableVertex(0.0, 2.0, 1.0), // 04
+                        _pi54 to MutableVertex(0.0, 1.0 + _s1, 1.0 + _s1), // 05
+                        _pi32 to MutableVertex(0.0, 1.0, 2.0), // 06
+                        _pi74 to MutableVertex(0.0, 1.0 - _s1, 1.0 + _s1), // 07
+                        _pi42 to MutableVertex(0.0, 0.0, 1.0), // 08
+                    ),
+                ),
+            )
+
+            val YAbout: List<About> = listOf(
+                About(
+                    vertex = MutableVertex(1.0, 0.0, 0.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        0.0 to MutableVertex(1.0, 0.0, 0.0), // 00
+                        _pi14 to MutableVertex(1.0 - _s1, 0.0, 1.0 - _s1), // 01
+                        _pi12 to MutableVertex(0.0, 0.0, 1.0), // 02
+                        _pi34 to MutableVertex(1.0 - _s1, 0.0, 1.0 + _s1), // 03
+                        _pi22 to MutableVertex(1.0, 0.0, 2.0), // 04
+                        _pi54 to MutableVertex(1.0 + _s1, 0.0, 1.0 + _s1), // 05
+                        _pi32 to MutableVertex(2.0, 0.0, 1.0), // 06
+                        _pi74 to MutableVertex(1.0 + _s1, 0.0, 1.0 - _s1), // 07
+                        _pi42 to MutableVertex(1.0, 0.0, 0.0), // 08
+                    ),
+                ),
+                About(
+                    vertex = MutableVertex(0.0, 1.0, 0.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        0.0 to MutableVertex(0.0, 1.0, 0.0), // 00
+                        _pi14 to MutableVertex(1.0 - _s2, 1.0, 1.0), // 01
+                        _pi12 to MutableVertex(0.0, 1.0, 2.0), // 02
+                        _pi34 to MutableVertex(1.0, 1.0, 1.0 + _s2), // 03
+                        _pi22 to MutableVertex(2.0, 1.0, 2.0), // 04
+                        _pi54 to MutableVertex(1.0 + _s2, 1.0, 1.0), // 05
+                        _pi32 to MutableVertex(2.0, 1.0, 0.0), // 06
+                        _pi74 to MutableVertex(1.0, 1.0, 1.0 - _s2), // 07
+                        _pi42 to MutableVertex(0.0, 1.0, 0.0), // 08
+                    ),
+                ),
+                About(
+                    vertex = MutableVertex(0.0, 0.0, 1.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        0.0 to MutableVertex(0.0, 0.0, 1.0), // 00
+                        _pi14 to MutableVertex(1.0 - _s1, 0.0, 1.0 + _s1), // 01
+                        _pi12 to MutableVertex(1.0, 0.0, 2.0), // 02
+                        _pi34 to MutableVertex(1.0 + _s1, 0.0, 1.0 + _s1), // 03
+                        _pi22 to MutableVertex(2.0, 0.0, 1.0), // 04
+                        _pi54 to MutableVertex(1.0 + _s1, 0.0, 1.0 - _s1), // 05
+                        _pi32 to MutableVertex(1.0, 0.0, 0.0), // 06
+                        _pi74 to MutableVertex(1.0 - _s1, 0.0, 1.0 - _s1), // 07
+                        _pi42 to MutableVertex(0.0, 0.0, 1.0), // 08
+                    ),
+                ),
+            )
+
+            val ZAbout: List<About> = listOf(
+                About(
+                    vertex = MutableVertex(1.0, 0.0, 0.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        0.0 to MutableVertex(1.0, 0.0, 0.0), // 00
+                        _pi14 to MutableVertex(1.0 + _s1, 1.0 - _s1, 0.0), // 01
+                        _pi12 to MutableVertex(2.0, 1.0, 0.0), // 02
+                        _pi34 to MutableVertex(1.0 + _s1, 1.0 + _s1, 0.0), // 03
+                        _pi22 to MutableVertex(1.0, 2.0, 0.0), // 04
+                        _pi54 to MutableVertex(1.0 - _s1, 1.0 + _s1, 0.0), // 05
+                        _pi32 to MutableVertex(0.0, 1.0, 0.0), // 06
+                        _pi74 to MutableVertex(1.0 - _s1, 1.0 - _s1, 0.0), // 07
+                        _pi42 to MutableVertex(1.0, 0.0, 0.0), // 08
+                    ),
+                ),
+                About(
+                    vertex = MutableVertex(0.0, 1.0, 0.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        0.0 to MutableVertex(0.0, 1.0, 0.0), // 00
+                        _pi14 to MutableVertex(1.0 - _s1, 1.0 - _s1, 0.0), // 01
+                        _pi12 to MutableVertex(1.0, 0.0, 0.0), // 02
+                        _pi34 to MutableVertex(1.0 + _s1, 1.0 - _s1, 0.0), // 03
+                        _pi22 to MutableVertex(2.0, 1.0, 0.0), // 04
+                        _pi54 to MutableVertex(1.0 + _s1, 1.0 + _s1, 0.0), // 05
+                        _pi32 to MutableVertex(1.0, 2.0, 0.0), // 06
+                        _pi74 to MutableVertex(1.0 - _s1, 1.0 + _s1, 0.0), // 07
+                        _pi42 to MutableVertex(0.0, 1.0, 0.0), // 08
+                    ),
+                ),
+                About(
+                    vertex = MutableVertex(0.0, 0.0, 1.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        0.0 to MutableVertex(0.0, 0.0, 1.0), // 00
+                        _pi14 to MutableVertex(1.0, 1.0 - _s2, 1.0), // 01
+                        _pi12 to MutableVertex(2.0, 0.0, 1.0), // 02
+                        _pi34 to MutableVertex(1.0 + _s2, 1.0, 1.0), // 03
+                        _pi22 to MutableVertex(2.0, 2.0, 1.0), // 04
+                        _pi54 to MutableVertex(1.0, 1.0 + _s2, 1.0), // 05
+                        _pi32 to MutableVertex(0.0, 2.0, 1.0), // 06
+                        _pi74 to MutableVertex(1.0 - _s2, 1.0, 1.0), // 07
+                        _pi42 to MutableVertex(0.0, 0.0, 1.0), // 08
+                    ),
+                ),
+            )
+
+            fun test1About(
+                issues: List<About>,
+                getActual: (Vertex, Vertex, Double) -> Vertex,
+            ) {
+                val delta = 0.00000001
+                val exponent = 8
+                issues.forEachIndexed { i, issue ->
+                    issue.list.forEachIndexed { j, (radians: Double, expected) ->
+                        val actual = getActual(issue.vertex, issue.about, radians)
+                        val message = """
+                            $i/$j
+                            vertex: ${issue.vertex}
+                            about: ${issue.about}
+                            radians: $radians
                             e: $expected
                             a: $actual
                         """.trimIndent()
