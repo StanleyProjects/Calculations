@@ -23,10 +23,10 @@ internal object Assertions {
 
     object Rotations {
         object Issues {
-            class About(
+            class About<T : Any>(
                 val vertex: Vertex,
                 val about: Vertex,
-                val list: List<Pair<Double, Vertex>>,
+                val list: List<Pair<T, Vertex>>,
             )
 
             val X: List<Pair<Vertex, List<Pair<Double, Vertex>>>> = listOf(
@@ -398,7 +398,7 @@ internal object Assertions {
                 }
             }
 
-            val XAbout: List<About> = listOf(
+            val XAbout: List<About<Double>> = listOf(
                 About(
                     vertex = MutableVertex(1.0, 0.0, 0.0),
                     about = MutableVertex(1.0, 1.0, 1.0),
@@ -446,7 +446,7 @@ internal object Assertions {
                 ),
             )
 
-            val YAbout: List<About> = listOf(
+            val YAbout: List<About<Double>> = listOf(
                 About(
                     vertex = MutableVertex(1.0, 0.0, 0.0),
                     about = MutableVertex(1.0, 1.0, 1.0),
@@ -494,7 +494,7 @@ internal object Assertions {
                 ),
             )
 
-            val ZAbout: List<About> = listOf(
+            val ZAbout: List<About<Double>> = listOf(
                 About(
                     vertex = MutableVertex(1.0, 0.0, 0.0),
                     about = MutableVertex(1.0, 1.0, 1.0),
@@ -543,7 +543,7 @@ internal object Assertions {
             )
 
             fun test1About(
-                issues: List<About>,
+                issues: List<About<Double>>,
                 getActual: (Vertex, Vertex, Double) -> Vertex,
             ) {
                 val delta = 0.00000001
@@ -556,6 +556,268 @@ internal object Assertions {
                             vertex: ${issue.vertex}
                             about: ${issue.about}
                             radians: $radians
+                            e: $expected
+                            a: $actual
+                        """.trimIndent()
+                        assertEquals(
+                            expected = expected,
+                            actual = actual,
+                            delta = delta,
+                            exponent = exponent,
+                            message = message,
+                        )
+                    }
+                }
+            }
+
+            val XYZAbout: List<About<Rotation>> = listOf(
+                About(
+                    vertex = MutableVertex(1.0, 0.0, 0.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        Pair(
+                            MutableRotation(0.0, 0.0, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 00
+                        Pair(
+                            MutableRotation(0.0, 0.0, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 01
+                        Pair(
+                            MutableRotation(0.0, _pi12, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 02
+                        Pair(
+                            MutableRotation(0.0, _pi12, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 03
+                        Pair(
+                            MutableRotation(_pi12, 0.0, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 04
+                        Pair(
+                            MutableRotation(_pi12, 0.0, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 05
+                        Pair(
+                            MutableRotation(_pi12, _pi12, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 06
+                        Pair(
+                            MutableRotation(_pi12, _pi12, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 07
+                    ),
+                ),
+                About(
+                    vertex = MutableVertex(0.0, 1.0, 0.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        Pair(
+                            MutableRotation(0.0, 0.0, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 00
+                        Pair(
+                            MutableRotation(0.0, 0.0, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 01
+                        Pair(
+                            MutableRotation(0.0, _pi12, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 02
+                        Pair(
+                            MutableRotation(0.0, _pi12, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 03
+                        Pair(
+                            MutableRotation(_pi12, 0.0, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 04
+                        Pair(
+                            MutableRotation(_pi12, 0.0, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 05
+                        Pair(
+                            MutableRotation(_pi12, _pi12, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 06
+                        Pair(
+                            MutableRotation(_pi12, _pi12, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 07
+                    ),
+                ),
+                About(
+                    vertex = MutableVertex(0.0, 0.0, 1.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        Pair(
+                            MutableRotation(0.0, 0.0, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 00
+                        Pair(
+                            MutableRotation(0.0, 0.0, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 01
+                        Pair(
+                            MutableRotation(0.0, _pi12, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 02
+                        Pair(
+                            MutableRotation(0.0, _pi12, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 03
+                        Pair(
+                            MutableRotation(_pi12, 0.0, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 04
+                        Pair(
+                            MutableRotation(_pi12, 0.0, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 05
+                        Pair(
+                            MutableRotation(_pi12, _pi12, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 06
+                        Pair(
+                            MutableRotation(_pi12, _pi12, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 07
+                    ),
+                ),
+            )
+
+            val ZYXAbout: List<About<Rotation>> = listOf(
+                About(
+                    vertex = MutableVertex(1.0, 0.0, 0.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        Pair(
+                            MutableRotation(0.0, 0.0, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 00
+                        Pair(
+                            MutableRotation(0.0, 0.0, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 01
+                        Pair(
+                            MutableRotation(0.0, _pi12, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 02
+                        Pair(
+                            MutableRotation(0.0, _pi12, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 03
+                        Pair(
+                            MutableRotation(_pi12, 0.0, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 04
+                        Pair(
+                            MutableRotation(_pi12, 0.0, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 05
+                        Pair(
+                            MutableRotation(_pi12, _pi12, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 06
+                        Pair(
+                            MutableRotation(_pi12, _pi12, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 07
+                    ),
+                ),
+                About(
+                    vertex = MutableVertex(0.0, 1.0, 0.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        Pair(
+                            MutableRotation(0.0, 0.0, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 00
+                        Pair(
+                            MutableRotation(0.0, 0.0, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 01
+                        Pair(
+                            MutableRotation(0.0, _pi12, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 02
+                        Pair(
+                            MutableRotation(0.0, _pi12, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 03
+                        Pair(
+                            MutableRotation(_pi12, 0.0, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 04
+                        Pair(
+                            MutableRotation(_pi12, 0.0, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 05
+                        Pair(
+                            MutableRotation(_pi12, _pi12, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 06
+                        Pair(
+                            MutableRotation(_pi12, _pi12, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 07
+                    ),
+                ),
+                About(
+                    vertex = MutableVertex(0.0, 0.0, 1.0),
+                    about = MutableVertex(1.0, 1.0, 1.0),
+                    listOf(
+                        Pair(
+                            MutableRotation(0.0, 0.0, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 00
+                        Pair(
+                            MutableRotation(0.0, 0.0, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 01
+                        Pair(
+                            MutableRotation(0.0, _pi12, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 02
+                        Pair(
+                            MutableRotation(0.0, _pi12, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 03
+                        Pair(
+                            MutableRotation(_pi12, 0.0, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 04
+                        Pair(
+                            MutableRotation(_pi12, 0.0, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 05
+                        Pair(
+                            MutableRotation(_pi12, _pi12, 0.0),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 06
+                        Pair(
+                            MutableRotation(_pi12, _pi12, _pi12),
+                            MutableVertex(42.0, 42.0, 42.0),
+                        ), // 07
+                    ),
+                ),
+            )
+
+            fun test3About(
+                issues: List<About<Rotation>>,
+                getActual: (Vertex, Vertex, Rotation) -> Vertex,
+            ) {
+                val delta = 0.00000001
+                val exponent = 8
+                issues.forEachIndexed { i, issue ->
+                    issue.list.forEachIndexed { j, (rotation, expected) ->
+                        val actual = getActual(issue.vertex, issue.about, rotation)
+                        val message = """
+                            $i/$j
+                            vertex: ${issue.vertex}
+                            about: ${issue.about}
+                            rotation: $rotation
                             e: $expected
                             a: $actual
                         """.trimIndent()

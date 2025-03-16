@@ -165,4 +165,44 @@ internal class RotationsTest {
             },
         )
     }
+
+    @Test
+    fun rxyzAboutTest() {
+        Assertions.Rotations.Issues.test3About(
+            issues = Assertions.Rotations.Issues.XYZAbout,
+            getActual = { vertex, about, rotation ->
+                rxyz(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    aX = rotation.aX,
+                    aY = rotation.aY,
+                    aZ = rotation.aZ,
+                    rX = about.x,
+                    rY = about.y,
+                    rZ = about.z,
+                )
+            },
+        )
+    }
+
+    @Test
+    fun rzyxAboutTest() {
+        Assertions.Rotations.Issues.test3About(
+            issues = Assertions.Rotations.Issues.ZYXAbout,
+            getActual = { vertex, about, rotation ->
+                rzyx(
+                    x = vertex.x,
+                    y = vertex.y,
+                    z = vertex.z,
+                    aX = rotation.aX,
+                    aY = rotation.aY,
+                    aZ = rotation.aZ,
+                    rX = about.x,
+                    rY = about.y,
+                    rZ = about.z,
+                )
+            },
+        )
+    }
 }
