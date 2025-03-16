@@ -572,116 +572,116 @@ internal object Assertions {
 
             val XYZAbout: List<About<Rotation>> = listOf(
                 About(
-                    vertex = MutableVertex(1.0, 0.0, 0.0),
+                    vertex = MutableVertex(2.0, 0.0, 0.0),
                     about = MutableVertex(1.0, 1.0, 1.0),
                     listOf(
                         Pair(
                             MutableRotation(0.0, 0.0, 0.0),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(2.0, 0.0, 0.0),
                         ), // 00
                         Pair(
                             MutableRotation(0.0, 0.0, _pi12),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(2.0, 2.0, 0.0),
                         ), // 01
                         Pair(
                             MutableRotation(0.0, _pi12, 0.0),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 0.0, 0.0),
                         ), // 02
                         Pair(
                             MutableRotation(0.0, _pi12, _pi12),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(2.0, 0.0, 0.0),
                         ), // 03
                         Pair(
                             MutableRotation(_pi12, 0.0, 0.0),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(2.0, 2.0, 0.0),
                         ), // 04
                         Pair(
                             MutableRotation(_pi12, 0.0, _pi12),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 2.0, 0.0),
                         ), // 05
                         Pair(
                             MutableRotation(_pi12, _pi12, 0.0),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 2.0, 0.0),
                         ), // 06
                         Pair(
                             MutableRotation(_pi12, _pi12, _pi12),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 0.0, 0.0),
                         ), // 07
                     ),
                 ),
                 About(
-                    vertex = MutableVertex(0.0, 1.0, 0.0),
+                    vertex = MutableVertex(0.0, 2.0, 0.0),
                     about = MutableVertex(1.0, 1.0, 1.0),
                     listOf(
                         Pair(
                             MutableRotation(0.0, 0.0, 0.0),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 2.0, 0.0),
                         ), // 00
                         Pair(
                             MutableRotation(0.0, 0.0, _pi12),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 0.0, 0.0),
                         ), // 01
                         Pair(
                             MutableRotation(0.0, _pi12, 0.0),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 2.0, 2.0),
                         ), // 02
                         Pair(
                             MutableRotation(0.0, _pi12, _pi12),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 0.0, 2.0),
                         ), // 03
                         Pair(
                             MutableRotation(_pi12, 0.0, 0.0),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 2.0, 2.0),
                         ), // 04
                         Pair(
                             MutableRotation(_pi12, 0.0, _pi12),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 0.0, 2.0),
                         ), // 05
                         Pair(
                             MutableRotation(_pi12, _pi12, 0.0),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(2.0, 2.0, 2.0),
                         ), // 06
                         Pair(
                             MutableRotation(_pi12, _pi12, _pi12),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 2.0, 2.0),
                         ), // 07
                     ),
                 ),
                 About(
-                    vertex = MutableVertex(0.0, 0.0, 1.0),
+                    vertex = MutableVertex(0.0, 0.0, 2.0),
                     about = MutableVertex(1.0, 1.0, 1.0),
                     listOf(
                         Pair(
                             MutableRotation(0.0, 0.0, 0.0),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 0.0, 2.0),
                         ), // 00
                         Pair(
                             MutableRotation(0.0, 0.0, _pi12),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(2.0, 0.0, 2.0),
                         ), // 01
                         Pair(
                             MutableRotation(0.0, _pi12, 0.0),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(2.0, 0.0, 2.0),
                         ), // 02
                         Pair(
                             MutableRotation(0.0, _pi12, _pi12),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(2.0, 2.0, 2.0),
                         ), // 03
                         Pair(
                             MutableRotation(_pi12, 0.0, 0.0),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 0.0, 0.0),
                         ), // 04
                         Pair(
                             MutableRotation(_pi12, 0.0, _pi12),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(2.0, 0.0, 0.0),
                         ), // 05
                         Pair(
                             MutableRotation(_pi12, _pi12, 0.0),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(0.0, 0.0, 2.0),
                         ), // 06
                         Pair(
                             MutableRotation(_pi12, _pi12, _pi12),
-                            MutableVertex(42.0, 42.0, 42.0),
+                            MutableVertex(2.0, 0.0, 2.0),
                         ), // 07
                     ),
                 ),
