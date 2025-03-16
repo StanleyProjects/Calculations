@@ -1,0 +1,305 @@
+package sp.kx.calculations.rotations
+
+import sp.kx.calculations.geometry.MutableVertex
+import sp.kx.calculations.geometry.Rotation
+import sp.kx.calculations.geometry.Vertex
+
+/*
+internal fun aa(
+    x: Double,
+    y: Double,
+    z: Double,
+    _x: Double,
+    _y: Double,
+    _z: Double,
+    radians: Double,
+): Vertex {
+    val c = kotlin.math.cos(radians)
+    val s = kotlin.math.sin(radians)
+    val m00 = c + (1 - c) * _x * _x;      val m01 = (1 - c) * _x * _y - s * _z; val m02 = (1 - c) * _x * _z + s * _y
+    val m10 = (1 - c) * _y * _x + s * _z; val m11 = c + (1 - c) * _y * _y;      val m12 = (1 - c) * _y * _z - s * _x
+    val m20 = (1 - c) * _z * _x - s * _y; val m21 = (1 - c) * _z * _y + s * _x; val m22 = c + (1 - c) * _z * _z
+    return MutableVertex(
+        x = m00 * x + m01 * y + m02 * z,
+        y = m10 * x + m11 * y + m12 * z,
+        z = m20 * x + m21 * y + m22 * z,
+    )
+}
+*/
+
+fun rx(
+    x: Double,
+    y: Double,
+    z: Double,
+    radians: Double,
+): Vertex {
+    val c = kotlin.math.cos(radians)
+    val s = kotlin.math.sin(radians)
+    //
+//    val m00 = c + (1 - c) * 1.0 * 1.0;      val m01 = (1 - c) * 1.0 * 0.0 - s * 0.0; val m02 = (1 - c) * 1.0 * 0.0 + s * 0.0
+//    val m10 = (1 - c) * 0.0 * 1.0 + s * 0.0; val m11 = c + (1 - c) * 0.0 * 0.0;      val m12 = (1 - c) * 0.0 * 0.0 - s * 1.0
+//    val m20 = (1 - c) * 0.0 * 1.0 - s * 0.0; val m21 = (1 - c) * 0.0 * 0.0 + s * 1.0; val m22 = c + (1 - c) * 0.0 * 0.0
+//    return MutableVertex(
+//        x = m00 * x + m01 * y + m02 * z,
+//        y = m10 * x + m11 * y + m12 * z,
+//        z = m20 * x + m21 * y + m22 * z,
+//    )
+    //
+//    val m00 = 1.0; val m01 = 0.0; val m02 = 0.0
+//    val m10 = 0.0; val m11 = c;   val m12 = -s
+//    val m20 = 0.0; val m21 = s;   val m22 = c
+//    return MutableVertex(
+//        x = m00 * x + m01 * y + m02 * z,
+//        y = m10 * x + m11 * y + m12 * z,
+//        z = m20 * x + m21 * y + m22 * z,
+//    )
+    //
+    return MutableVertex(
+        x = x,
+        y = y * c - z * s,
+        z = y * s + z * c,
+    )
+}
+
+fun ry(
+    x: Double,
+    y: Double,
+    z: Double,
+    radians: Double,
+): Vertex {
+    val c = kotlin.math.cos(radians)
+    val s = kotlin.math.sin(radians)
+    return MutableVertex(
+        x = z * s + x * c,
+        y = y,
+        z = z * c - x * s,
+    )
+}
+
+fun rz(
+    x: Double,
+    y: Double,
+    z: Double,
+    radians: Double,
+): Vertex {
+    val c = kotlin.math.cos(radians)
+    val s = kotlin.math.sin(radians)
+    return MutableVertex(
+        x = x * c - y * s,
+        y = x * s + y * c,
+        z = z,
+    )
+}
+
+fun rxyz(
+    x: Double,
+    y: Double,
+    z: Double,
+    aX: Double,
+    aY: Double,
+    aZ: Double,
+): Vertex {
+    var c = kotlin.math.cos(aX)
+    var s = kotlin.math.sin(aX)
+    val _y = y * c - z * s
+    var _z = y * s + z * c
+    c = kotlin.math.cos(aY)
+    s = kotlin.math.sin(aY)
+    val _x = _z * s + x * c
+    _z = _z * c - x * s
+    c = kotlin.math.cos(aZ)
+    s = kotlin.math.sin(aZ)
+    return MutableVertex(
+        x = _x * c - _y * s,
+        y = _x * s + _y * c,
+        z = _z,
+    )
+}
+
+fun rzyx(
+    x: Double,
+    y: Double,
+    z: Double,
+    aX: Double,
+    aY: Double,
+    aZ: Double,
+): Vertex {
+//    val vz = rz(x, y, z, aZ)
+//    val vy = ry(vz.x, vz.y, vz.z, aY)
+//    return rx(vy.x, vy.y, vy.z, aX)
+    //
+    var c = kotlin.math.cos(aZ)
+    var s = kotlin.math.sin(aZ)
+    var _x = x * c - y * s
+    val _y = x * s + y * c
+    c = kotlin.math.cos(aY)
+    s = kotlin.math.sin(aY)
+    val _z = z * c - _x * s
+    _x = z * s + _x * c
+    c = kotlin.math.cos(aX)
+    s = kotlin.math.sin(aX)
+    return MutableVertex(
+        x = _x,
+        y = _y * c - _z * s,
+        z = _y * s + _z * c,
+    )
+}
+
+fun rxyz(
+    x: Double,
+    y: Double,
+    z: Double,
+    rotation: Rotation,
+): Vertex {
+    var c = kotlin.math.cos(rotation.aX)
+    var s = kotlin.math.sin(rotation.aX)
+    val _y = y * c - z * s
+    var _z = y * s + z * c
+    c = kotlin.math.cos(rotation.aY)
+    s = kotlin.math.sin(rotation.aY)
+    val _x = _z * s + x * c
+    _z = _z * c - x * s
+    c = kotlin.math.cos(rotation.aZ)
+    s = kotlin.math.sin(rotation.aZ)
+    return MutableVertex(
+        x = _x * c - _y * s,
+        y = _x * s + _y * c,
+        z = _z,
+    )
+}
+
+fun rzyx(
+    x: Double,
+    y: Double,
+    z: Double,
+    rotation: Rotation,
+): Vertex {
+    var c = kotlin.math.cos(rotation.aZ)
+    var s = kotlin.math.sin(rotation.aZ)
+    var _x = x * c - y * s
+    val _y = x * s + y * c
+    c = kotlin.math.cos(rotation.aY)
+    s = kotlin.math.sin(rotation.aY)
+    val _z = z * c - _x * s
+    _x = z * s + _x * c
+    c = kotlin.math.cos(rotation.aX)
+    s = kotlin.math.sin(rotation.aX)
+    return MutableVertex(
+        x = _x,
+        y = _y * c - _z * s,
+        z = _y * s + _z * c,
+    )
+}
+
+fun rx(
+    x: Double,
+    y: Double,
+    z: Double,
+    radians: Double,
+    rY: Double,
+    rZ: Double,
+): Vertex {
+    val c = kotlin.math.cos(radians)
+    val s = kotlin.math.sin(radians)
+    val _y = y - rY
+    val _z = z - rZ
+    return MutableVertex(
+        x = x,
+        y = _y * c - _z * s + rY,
+        z = _y * s + _z * c + rZ,
+    )
+}
+
+fun ry(
+    x: Double,
+    y: Double,
+    z: Double,
+    radians: Double,
+    rX: Double,
+    rZ: Double,
+): Vertex {
+    val c = kotlin.math.cos(radians)
+    val s = kotlin.math.sin(radians)
+    val _x = x - rX
+    val _z = z - rZ
+    return MutableVertex(
+        x = _z * s + _x * c + rX,
+        y = y,
+        z = _z * c - _x * s + rZ,
+    )
+}
+
+fun rz(
+    x: Double,
+    y: Double,
+    z: Double,
+    radians: Double,
+    rX: Double,
+    rY: Double,
+): Vertex {
+    val c = kotlin.math.cos(radians)
+    val s = kotlin.math.sin(radians)
+    val _x = x - rX
+    val _y = y - rY
+    return MutableVertex(
+        x = _x * c - _y * s + rX,
+        y = _x * s + _y * c + rY,
+        z = z,
+    )
+}
+
+fun rxyz(
+    x: Double,
+    y: Double,
+    z: Double,
+    aX: Double,
+    aY: Double,
+    aZ: Double,
+    rX: Double,
+    rY: Double,
+    rZ: Double,
+): Vertex {
+    var c = kotlin.math.cos(aX)
+    var s = kotlin.math.sin(aX)
+    val _y = (y - rY) * c - (z - rZ) * s
+    var _z = (y - rY) * s + (z - rZ) * c
+    c = kotlin.math.cos(aY)
+    s = kotlin.math.sin(aY)
+    val _x = _z * s + (x - rX) * c
+    _z = _z * c - (x - rX) * s
+    c = kotlin.math.cos(aZ)
+    s = kotlin.math.sin(aZ)
+    return MutableVertex(
+        x = _x * c - _y * s + rX,
+        y = _x * s + _y * c + rY,
+        z = _z + rZ,
+    )
+}
+
+fun rzyx(
+    x: Double,
+    y: Double,
+    z: Double,
+    aX: Double,
+    aY: Double,
+    aZ: Double,
+    rX: Double,
+    rY: Double,
+    rZ: Double,
+): Vertex {
+    var c = kotlin.math.cos(aZ)
+    var s = kotlin.math.sin(aZ)
+    var _x = (x - rX) * c - (y - rY) * s
+    val _y = (x - rX) * s + (y - rY) * c
+    c = kotlin.math.cos(aY)
+    s = kotlin.math.sin(aY)
+    val _z = (z - rZ) * c - _x * s
+    _x = (z - rZ) * s + _x * c
+    c = kotlin.math.cos(aX)
+    s = kotlin.math.sin(aX)
+    return MutableVertex(
+        x = _x + rX,
+        y = _y * c - _z * s + rY,
+        z = _y * s + _z * c + rZ,
+    )
+}
