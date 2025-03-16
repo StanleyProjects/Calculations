@@ -107,4 +107,36 @@ internal class MutableMatrixRotationsTest {
             },
         )
     }
+
+    @Test
+    fun rxyzAboutTest() {
+        Assertions.Rotations.Issues.test3About(
+            issues = Assertions.Rotations.Issues.XYZAbout,
+            getActual = { vertex: Vertex, rotation: Rotation, about: Vertex ->
+                val matrix = MutableMatrix()
+                matrix.identity()
+                matrix.rxyz(
+                    rotation = rotation,
+                    about = about,
+                )
+                vertex * matrix
+            },
+        )
+    }
+
+    @Test
+    fun rzyxAboutTest() {
+        Assertions.Rotations.Issues.test3About(
+            issues = Assertions.Rotations.Issues.ZYXAbout,
+            getActual = { vertex: Vertex, rotation: Rotation, about: Vertex ->
+                val matrix = MutableMatrix()
+                matrix.identity()
+                matrix.rzyx(
+                    rotation = rotation,
+                    about = about,
+                )
+                vertex * matrix
+            },
+        )
+    }
 }

@@ -103,7 +103,7 @@ internal class MutableVertexRotationsTest {
     fun rxyzAboutTest() {
         Assertions.Rotations.Issues.test3About(
             issues = Assertions.Rotations.Issues.XYZAbout,
-            getActual = { vertex, about, rotation ->
+            getActual = { vertex: Vertex, rotation: Rotation, about: Vertex ->
                 val actual = vertex.mut()
                 actual.rxyz(
                     about = about,
@@ -118,7 +118,7 @@ internal class MutableVertexRotationsTest {
     fun rzyxAboutTest() {
         Assertions.Rotations.Issues.test3About(
             issues = Assertions.Rotations.Issues.ZYXAbout,
-            getActual = { vertex, about, rotation ->
+            getActual = { vertex: Vertex, rotation: Rotation, about: Vertex ->
                 val actual = vertex.mut()
                 actual.rzyx(
                     about = about,

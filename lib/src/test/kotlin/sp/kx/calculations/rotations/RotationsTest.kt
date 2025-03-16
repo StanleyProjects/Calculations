@@ -119,7 +119,7 @@ internal class RotationsTest {
     fun rxAboutTest() {
         Assertions.Rotations.Issues.test1About(
             issues = Assertions.Rotations.Issues.XAbout,
-            getActual = { vertex, about, radians ->
+            getActual = { vertex: Vertex, radians: Double, about: Vertex ->
                 rx(
                     x = vertex.x,
                     y = vertex.y,
@@ -136,7 +136,7 @@ internal class RotationsTest {
     fun ryAboutTest() {
         Assertions.Rotations.Issues.test1About(
             issues = Assertions.Rotations.Issues.YAbout,
-            getActual = { vertex, about, radians ->
+            getActual = { vertex: Vertex, radians: Double, about: Vertex ->
                 ry(
                     x = vertex.x,
                     y = vertex.y,
@@ -153,7 +153,7 @@ internal class RotationsTest {
     fun rzAboutTest() {
         Assertions.Rotations.Issues.test1About(
             issues = Assertions.Rotations.Issues.ZAbout,
-            getActual = { vertex, about, radians ->
+            getActual = { vertex: Vertex, radians: Double, about: Vertex ->
                 rz(
                     x = vertex.x,
                     y = vertex.y,
@@ -170,7 +170,7 @@ internal class RotationsTest {
     fun rxyzAboutTest() {
         Assertions.Rotations.Issues.test3About(
             issues = Assertions.Rotations.Issues.XYZAbout,
-            getActual = { vertex, about, rotation ->
+            getActual = { vertex: Vertex, rotation: Rotation, about: Vertex ->
                 rxyz(
                     x = vertex.x,
                     y = vertex.y,
@@ -190,7 +190,7 @@ internal class RotationsTest {
     fun rzyxAboutTest() {
         Assertions.Rotations.Issues.test3About(
             issues = Assertions.Rotations.Issues.ZYXAbout,
-            getActual = { vertex, about, rotation ->
+            getActual = { vertex: Vertex, rotation: Rotation, about: Vertex ->
                 rzyx(
                     x = vertex.x,
                     y = vertex.y,

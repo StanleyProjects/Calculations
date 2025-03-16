@@ -96,11 +96,11 @@ internal class VertexRotationsTest {
     fun rxyzAboutTest() {
         Assertions.Rotations.Issues.test3About(
             issues = Assertions.Rotations.Issues.XYZAbout,
-            getActual = { vertex, about, rotation ->
+            getActual = { vertex: Vertex, rotation: Rotation, about: Vertex ->
                 rxyz(
                     vertex = vertex,
-                    about = about,
                     rotation = rotation,
+                    about = about,
                 )
             },
         )
@@ -110,11 +110,11 @@ internal class VertexRotationsTest {
     fun rzyxAboutTest() {
         Assertions.Rotations.Issues.test3About(
             issues = Assertions.Rotations.Issues.ZYXAbout,
-            getActual = { vertex, about, rotation ->
+            getActual = { vertex: Vertex, rotation: Rotation, about: Vertex ->
                 rzyx(
                     vertex = vertex,
-                    about = about,
                     rotation = rotation,
+                    about = about,
                 )
             },
         )

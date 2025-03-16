@@ -97,8 +97,8 @@ fun MutableVertex.rzyx(rotation: Rotation) {
 }
 
 fun MutableVertex.rxyz(
-    about: Vertex,
     rotation: Rotation,
+    about: Vertex,
 ) {
     var c = kotlin.math.cos(rotation.aX)
     var s = kotlin.math.sin(rotation.aX)
@@ -115,8 +115,8 @@ fun MutableVertex.rxyz(
 }
 
 fun MutableVertex.rzyx(
-    about: Vertex,
     rotation: Rotation,
+    about: Vertex,
 ) {
     var c = kotlin.math.cos(rotation.aZ)
     var s = kotlin.math.sin(rotation.aZ)

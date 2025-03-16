@@ -544,13 +544,13 @@ internal object Assertions {
 
             fun test1About(
                 issues: List<About<Double>>,
-                getActual: (Vertex, Vertex, Double) -> Vertex,
+                getActual: (Vertex, Double, Vertex) -> Vertex,
             ) {
                 val delta = 0.00000001
                 val exponent = 8
                 issues.forEachIndexed { i, issue ->
                     issue.list.forEachIndexed { j, (radians: Double, expected) ->
-                        val actual = getActual(issue.vertex, issue.about, radians)
+                        val actual = getActual(issue.vertex, radians, issue.about)
                         val message = """
                             $i/$j
                             vertex: ${issue.vertex}
@@ -806,13 +806,13 @@ internal object Assertions {
 
             fun test3About(
                 issues: List<About<Rotation>>,
-                getActual: (Vertex, Vertex, Rotation) -> Vertex,
+                getActual: (Vertex, Rotation, Vertex) -> Vertex,
             ) {
                 val delta = 0.00000001
                 val exponent = 8
                 issues.forEachIndexed { i, issue ->
                     issue.list.forEachIndexed { j, (rotation, expected) ->
-                        val actual = getActual(issue.vertex, issue.about, rotation)
+                        val actual = getActual(issue.vertex, rotation, issue.about)
                         val message = """
                             $i/$j
                             vertex: ${issue.vertex}

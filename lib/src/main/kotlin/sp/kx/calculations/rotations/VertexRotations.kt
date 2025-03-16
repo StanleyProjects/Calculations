@@ -131,36 +131,36 @@ fun rzyx(
 
 fun rxyz(
     vertex: Vertex,
-    about: Vertex,
     rotation: Rotation,
+    about: Vertex,
 ): Vertex {
     return rxyz(
         x = vertex.x,
         y = vertex.y,
         z = vertex.z,
-        rX = about.x,
-        rY = about.y,
-        rZ = about.z,
         aX = rotation.aX,
         aY = rotation.aY,
         aZ = rotation.aZ,
+        rX = about.x,
+        rY = about.y,
+        rZ = about.z,
     )
 }
 
 fun rzyx(
     vertex: Vertex,
-    about: Vertex,
     rotation: Rotation,
+    about: Vertex,
 ): Vertex {
     return rzyx(
         x = vertex.x,
         y = vertex.y,
         z = vertex.z,
-        rX = about.x,
-        rY = about.y,
-        rZ = about.z,
         aX = rotation.aX,
         aY = rotation.aY,
         aZ = rotation.aZ,
+        rX = about.x,
+        rY = about.y,
+        rZ = about.z,
     )
 }

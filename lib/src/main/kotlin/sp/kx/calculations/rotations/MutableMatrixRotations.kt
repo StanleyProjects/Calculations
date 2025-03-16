@@ -1,7 +1,9 @@
 package sp.kx.calculations.rotations
 
 import sp.kx.calculations.algebra.MutableMatrix
+import sp.kx.calculations.algebra.translate
 import sp.kx.calculations.geometry.Rotation
+import sp.kx.calculations.geometry.Vertex
 
 // https://en.wikipedia.org/wiki/Rotation_matrix
 
@@ -237,4 +239,98 @@ fun MutableMatrix.rzyx(rotation: Rotation) {
     this.m10 = m10; this.m11 = m11; this.m12 = m12
     this.m20 = m20; this.m21 = m21; this.m22 = m22
     this.m30 = m30; this.m31 = m31; this.m32 = m32
+}
+
+fun MutableMatrix.rxyz(
+    rotation: Rotation,
+    about: Vertex,
+) {
+    m03 += m00 * about.x + m01 * about.y + m02 * about.z
+    m13 += m10 * about.x + m11 * about.y + m12 * about.z
+    m23 += m20 * about.x + m21 * about.y + m22 * about.z
+    m33 += m30 * about.x + m31 * about.y + m32 * about.z
+    //
+    val cX = kotlin.math.cos(rotation.aX)
+    val cY = kotlin.math.cos(rotation.aY)
+    val cZ = kotlin.math.cos(rotation.aZ)
+    val sX = kotlin.math.sin(rotation.aX)
+    val sY = kotlin.math.sin(rotation.aY)
+    val sZ = kotlin.math.sin(rotation.aZ)
+    //
+    val n00 = cZ * cY
+    val n01 = cZ * sY * sX - sZ * cX
+    val n02 = cZ * sY * cX + sZ * sX
+    val n10 = sZ * cY
+    val n11 = cZ * cX + sZ * sY * sX
+    val n12 = sZ * sY * cX - cZ * sX
+    val n21 = cY * sX
+    val n22 = cY * cX
+    //
+    val m00 = this.m00 * n00 + this.m01 * n10 - this.m02 * sY
+    val m01 = this.m00 * n01 + this.m01 * n11 + this.m02 * n21
+    val m02 = this.m00 * n02 + this.m01 * n12 + this.m02 * n22
+    val m10 = this.m10 * n00 + this.m11 * n10 - this.m12 * sY
+    val m11 = this.m10 * n01 + this.m11 * n11 + this.m12 * n21
+    val m12 = this.m10 * n02 + this.m11 * n12 + this.m12 * n22
+    val m20 = this.m20 * n00 + this.m21 * n10 - this.m22 * sY
+    val m21 = this.m20 * n01 + this.m21 * n11 + this.m22 * n21
+    val m22 = this.m20 * n02 + this.m21 * n12 + this.m22 * n22
+    val m30 = this.m30 * n00 + this.m31 * n10 - this.m32 * sY
+    val m31 = this.m30 * n01 + this.m31 * n11 + this.m32 * n21
+    val m32 = this.m30 * n02 + this.m31 * n12 + this.m32 * n22
+    //
+    this.m00 = m00; this.m01 = m01; this.m02 = m02
+    this.m10 = m10; this.m11 = m11; this.m12 = m12
+    this.m20 = m20; this.m21 = m21; this.m22 = m22
+    this.m30 = m30; this.m31 = m31; this.m32 = m32
+    //
+    m03 -= m00 * about.x + m01 * about.y + m02 * about.z
+    m13 -= m10 * about.x + m11 * about.y + m12 * about.z
+    m23 -= m20 * about.x + m21 * about.y + m22 * about.z
+    m33 -= m30 * about.x + m31 * about.y + m32 * about.z
+}
+
+fun MutableMatrix.rzyx(
+    rotation: Rotation,
+    about: Vertex,
+) {
+    m03 += m00 * about.x + m01 * about.y + m02 * about.z
+    m13 += m10 * about.x + m11 * about.y + m12 * about.z
+    m23 += m20 * about.x + m21 * about.y + m22 * about.z
+    m33 += m30 * about.x + m31 * about.y + m32 * about.z
+    //
+    val cX = kotlin.math.cos(rotation.aX)
+    val cY = kotlin.math.cos(rotation.aY)
+    val cZ = kotlin.math.cos(rotation.aZ)
+    val sX = kotlin.math.sin(rotation.aX)
+    val sY = kotlin.math.sin(rotation.aY)
+    val sZ = kotlin.math.sin(rotation.aZ)
+    //
+    val n10 = cX * sZ + sX * sY * cZ
+    val n11 = cX * cZ - sX * sY * sZ
+    val n20 = sX * sZ - cX * sY * cZ
+    val n21 = cX * sY * sZ + sX * cZ
+    //
+    val m00 = this.m00 * cY * cZ + this.m01 * n10 + this.m02 * n20
+    val m01 = this.m01 * n11 + this.m02 * n21 - this.m00 * cY * sZ
+    val m02 = this.m00 * sY - this.m01 * sX * cY + this.m02 * cX * cY
+    val m10 = this.m10 * cY * cZ + this.m11 * n10 + this.m12 * n20
+    val m11 = this.m11 * n11 + this.m12 * n21 - this.m10 * cY * sZ
+    val m12 = this.m10 * sY - this.m11 * sX * cY + this.m12 * cX * cY
+    val m20 = this.m20 * cY * cZ + this.m21 * n10 + this.m22 * n20
+    val m21 = this.m21 * n11 + this.m22 * n21 - this.m20 * cY * sZ
+    val m22 = this.m20 * sY - this.m21 * sX * cY + this.m22 * cX * cY
+    val m30 = this.m30 * cY * cZ + this.m31 * n10 + this.m32 * n20
+    val m31 = this.m31 * n11 + this.m32 * n21 - this.m30 * cY * sZ
+    val m32 = this.m30 * sY - this.m31 * sX * cY + this.m32 * cX * cY
+    //
+    this.m00 = m00; this.m01 = m01; this.m02 = m02
+    this.m10 = m10; this.m11 = m11; this.m12 = m12
+    this.m20 = m20; this.m21 = m21; this.m22 = m22
+    this.m30 = m30; this.m31 = m31; this.m32 = m32
+    //
+    m03 -= m00 * about.x + m01 * about.y + m02 * about.z
+    m13 -= m10 * about.x + m11 * about.y + m12 * about.z
+    m23 -= m20 * about.x + m21 * about.y + m22 * about.z
+    m33 -= m30 * about.x + m31 * about.y + m32 * about.z
 }
