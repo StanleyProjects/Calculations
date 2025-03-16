@@ -31,6 +31,12 @@ class MutableVertex(
         this.y = y
         this.z = z
     }
+
+    fun set(other: Vertex) {
+        x = other.x
+        y = other.y
+        z = other.z
+    }
 }
 
 fun Vertex.mut(): MutableVertex {

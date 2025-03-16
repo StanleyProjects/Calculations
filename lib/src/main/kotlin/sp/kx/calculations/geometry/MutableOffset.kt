@@ -17,6 +17,26 @@ class MutableOffset(
     override fun hashCode(): Int {
         return Objects.hash(dX, dY, dZ)
     }
+
+    override fun toString(): String {
+        return "Offset(dX: ${String.format("%.2f", dX)}, dY: ${String.format("%.2f", dY)}, dZ: ${String.format("%.2f", dZ)})"
+    }
+
+    fun set(
+        dX: Double,
+        dY: Double,
+        dZ: Double,
+    ) {
+        this.dX = dX
+        this.dY = dY
+        this.dZ = dZ
+    }
+
+    fun set(other: Offset) {
+        dX = other.dX
+        dY = other.dY
+        dZ = other.dZ
+    }
 }
 
 fun Offset.mut(): MutableOffset {

@@ -16,6 +16,19 @@ class MutableCell(
     override fun hashCode(): Int {
         return Objects.hash(x, y)
     }
+
+    fun set(
+        x: Int,
+        y: Int,
+    ) {
+        this.x = x
+        this.y = y
+    }
+
+    fun set(other: Cell) {
+        x = other.x
+        y = other.y
+    }
 }
 
 fun Cell.mut(): MutableCell {

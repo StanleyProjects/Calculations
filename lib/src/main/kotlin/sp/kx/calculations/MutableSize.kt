@@ -16,6 +16,19 @@ class MutableSize(
     override fun hashCode(): Int {
         return Objects.hash(width, height)
     }
+
+    fun set(
+        width: Double,
+        height: Double,
+    ) {
+        this.width = width
+        this.height = height
+    }
+
+    fun set(other: Size) {
+        width = other.width
+        height = other.height
+    }
 }
 
 fun Size.mut(): MutableSize {
