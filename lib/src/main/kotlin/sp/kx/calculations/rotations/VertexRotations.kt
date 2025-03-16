@@ -128,3 +128,39 @@ fun rzyx(
         z = _y * s + _z * c,
     )
 }
+
+fun rxyz(
+    vertex: Vertex,
+    about: Vertex,
+    rotation: Rotation,
+): Vertex {
+    return rxyz(
+        x = vertex.x,
+        y = vertex.y,
+        z = vertex.z,
+        rX = about.x,
+        rY = about.y,
+        rZ = about.z,
+        aX = rotation.aX,
+        aY = rotation.aY,
+        aZ = rotation.aZ,
+    )
+}
+
+fun rzyx(
+    vertex: Vertex,
+    about: Vertex,
+    rotation: Rotation,
+): Vertex {
+    return rzyx(
+        x = vertex.x,
+        y = vertex.y,
+        z = vertex.z,
+        rX = about.x,
+        rY = about.y,
+        rZ = about.z,
+        aX = rotation.aX,
+        aY = rotation.aY,
+        aZ = rotation.aZ,
+    )
+}
