@@ -98,4 +98,34 @@ internal class MutableVertexRotationsTest {
             },
         )
     }
+
+    @Test
+    fun rxyzAboutTest() {
+        Assertions.Rotations.Issues.test3About(
+            issues = Assertions.Rotations.Issues.XYZAbout,
+            getActual = { vertex, about, rotation ->
+                val actual = vertex.mut()
+                actual.rxyz(
+                    about = about,
+                    rotation = rotation,
+                )
+                actual
+            },
+        )
+    }
+
+    @Test
+    fun rzyxAboutTest() {
+        Assertions.Rotations.Issues.test3About(
+            issues = Assertions.Rotations.Issues.ZYXAbout,
+            getActual = { vertex, about, rotation ->
+                val actual = vertex.mut()
+                actual.rzyx(
+                    about = about,
+                    rotation = rotation,
+                )
+                actual
+            },
+        )
+    }
 }
