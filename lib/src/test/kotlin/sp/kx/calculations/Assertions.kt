@@ -344,7 +344,7 @@ internal object Assertions {
                         MutableRotation(_pi12, _pi12, _pi12),
                         MutableVertex(1.0, 0.0, 0.0),
                     ), // 07
-                )
+                ),
             )
 
             fun test1(issues: List<Pair<Vertex, List<Pair<Double, Vertex>>>>, getActual: (Vertex, Double) -> Vertex) {

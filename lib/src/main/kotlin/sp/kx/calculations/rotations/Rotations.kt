@@ -4,6 +4,7 @@ import sp.kx.calculations.geometry.MutableVertex
 import sp.kx.calculations.geometry.Rotation
 import sp.kx.calculations.geometry.Vertex
 
+/*
 internal fun aa(
     x: Double,
     y: Double,
@@ -24,6 +25,7 @@ internal fun aa(
         z = m20 * x + m21 * y + m22 * z,
     )
 }
+*/
 
 fun rx(
     x: Double,

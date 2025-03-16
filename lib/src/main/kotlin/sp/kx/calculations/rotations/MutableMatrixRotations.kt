@@ -1,7 +1,6 @@
 package sp.kx.calculations.rotations
 
 import sp.kx.calculations.algebra.MutableMatrix
-import sp.kx.calculations.algebra.translate
 import sp.kx.calculations.geometry.Rotation
 import sp.kx.calculations.geometry.Vertex
 
@@ -46,6 +45,7 @@ fun MutableMatrix.rx(radians: Double) {
 }
 */
 
+@Suppress("ktlint:standard:wrapping")
 fun MutableMatrix.rx(radians: Double) {
     val c = kotlin.math.cos(radians)
     val s = kotlin.math.sin(radians)
@@ -63,6 +63,7 @@ fun MutableMatrix.rx(radians: Double) {
     this.m31 = m31; this.m32 = m32
 }
 
+@Suppress("ktlint:standard:wrapping")
 fun MutableMatrix.ry(radians: Double) {
     val c = kotlin.math.cos(radians)
     val s = kotlin.math.sin(radians)
@@ -80,6 +81,7 @@ fun MutableMatrix.ry(radians: Double) {
     this.m30 = m30; this.m32 = m32
 }
 
+@Suppress("ktlint:standard:wrapping")
 fun MutableMatrix.rz(radians: Double) {
     val c = kotlin.math.cos(radians)
     val s = kotlin.math.sin(radians)
@@ -97,6 +99,7 @@ fun MutableMatrix.rz(radians: Double) {
     this.m30 = m30; this.m31 = m31
 }
 
+@Suppress("ktlint:standard:wrapping")
 fun MutableMatrix.rxyz(
     aX: Double,
     aY: Double,
@@ -137,6 +140,7 @@ fun MutableMatrix.rxyz(
     this.m30 = m30; this.m31 = m31; this.m32 = m32
 }
 
+@Suppress("ktlint:standard:wrapping")
 fun MutableMatrix.rzyx(
     aX: Double,
     aY: Double,
@@ -173,6 +177,7 @@ fun MutableMatrix.rzyx(
     this.m30 = m30; this.m31 = m31; this.m32 = m32
 }
 
+@Suppress("ktlint:standard:wrapping")
 fun MutableMatrix.rxyz(rotation: Rotation) {
     val cX = kotlin.math.cos(rotation.aX)
     val cY = kotlin.math.cos(rotation.aY)
@@ -209,6 +214,7 @@ fun MutableMatrix.rxyz(rotation: Rotation) {
     this.m30 = m30; this.m31 = m31; this.m32 = m32
 }
 
+@Suppress("ktlint:standard:wrapping")
 fun MutableMatrix.rzyx(rotation: Rotation) {
     val cX = kotlin.math.cos(rotation.aX)
     val cY = kotlin.math.cos(rotation.aY)
@@ -241,6 +247,7 @@ fun MutableMatrix.rzyx(rotation: Rotation) {
     this.m30 = m30; this.m31 = m31; this.m32 = m32
 }
 
+@Suppress("ktlint:standard:wrapping")
 fun MutableMatrix.rxyz(
     rotation: Rotation,
     about: Vertex,
@@ -290,6 +297,7 @@ fun MutableMatrix.rxyz(
     m33 -= m30 * about.x + m31 * about.y + m32 * about.z
 }
 
+@Suppress("ktlint:standard:wrapping")
 fun MutableMatrix.rzyx(
     rotation: Rotation,
     about: Vertex,
